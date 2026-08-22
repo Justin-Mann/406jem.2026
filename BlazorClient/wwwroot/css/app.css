@@ -128,6 +128,18 @@ html, body {
   }
 }
 
+/* The drawer's open/closed state is a plain Blazor bool toggled only by the hamburger
+   button - nothing re-syncs it when the viewport crosses back above the mobile breakpoint,
+   so resizing (or rotating) from mobile to desktop while it's open otherwise leaves it
+   rendered full-bleed over the desktop layout despite the trigger button itself being
+   hidden. Force it closed here regardless of that Blazor state. */
+@media screen and (min-width: 768px) {
+  .jem-nav-drawer,
+  .mud-drawer-overlay {
+    display: none !important;
+  }
+}
+
 /* ========================
    Manage Resumes admin page (#31)
    ======================== */
