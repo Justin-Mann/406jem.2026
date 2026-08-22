@@ -4,6 +4,7 @@ using BlazorClient.Tests.Helpers;
 using Bunit;
 using Bunit.TestDoubles;
 using Microsoft.Extensions.DependencyInjection;
+using MudBlazor;
 using Xunit;
 
 namespace BlazorClient.Tests;
@@ -19,6 +20,13 @@ public class MainLayoutTests : MudBunitTestContext
         Services.AddScoped(sp => new AuthenticationService(client, sp.GetRequiredService<JwtAuthenticationStateProvider>()));
     }
 
+    // The desktop Admin menu is a MudMenu (popover-based), which needs MudPopoverProvider
+    // rendered - App.razor provides it at the app root, but MainLayout is rendered
+    // standalone here. Must be called last, after all service registration: rendering
+    // anything locks bUnit's service collection against further AddScoped/AddSingleton
+    // calls (e.g. AddTestAuthorization's).
+    private void RenderPopoverProvider() => RenderComponent<MudPopoverProvider>();
+
     [Fact]
     public void Visitor_DoesNotSeeAdminNavGroup()
     {
@@ -26,6 +34,7 @@ public class MainLayoutTests : MudBunitTestContext
         var authContext = this.AddTestAuthorization();
         authContext.SetAuthorized("jane");
         authContext.SetRoles("visitor");
+        RenderPopoverProvider();
 
         var cut = RenderComponent<MainLayout>();
 
@@ -41,6 +50,7 @@ public class MainLayoutTests : MudBunitTestContext
         var authContext = this.AddTestAuthorization();
         authContext.SetAuthorized("admin");
         authContext.SetRoles("admin");
+        RenderPopoverProvider();
 
         var cut = RenderComponent<MainLayout>();
 
@@ -56,6 +66,7 @@ public class MainLayoutTests : MudBunitTestContext
         var authContext = this.AddTestAuthorization();
         authContext.SetAuthorized("root");
         authContext.SetRoles("superadmin");
+        RenderPopoverProvider();
 
         var cut = RenderComponent<MainLayout>();
 

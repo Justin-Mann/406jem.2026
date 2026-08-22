@@ -13,18 +13,22 @@
                     <MudNavLink Href="/resume-posters">Contact a Poster</MudNavLink>
 
                     @* SuperAdmin (#28) implies ResumeAdmin's "admin" permissions, mirroring the
-                       backend's FunctionContextAuthExtensions.IsInRoleOrHigher (#31). *@
+                       backend's FunctionContextAuthExtensions.IsInRoleOrHigher (#31).
+                       MudMenu (not MudNavGroup) here deliberately - MudNavGroup expands its
+                       children inline, which is right for the vertical drawer below but just
+                       wraps into extra rows and pushes/overlaps the rest of the horizontal bar
+                       up here. MudMenu opens as a real popover under the trigger instead. *@
                     <AuthorizeView Roles="admin,superadmin">
                         <Authorized>
-                            <MudNavGroup Title="Admin" Icon="@Icons.Material.Filled.AdminPanelSettings" Class="jem-nav-admin-group">
-                                <MudNavLink Href="/admin/resumes">Manage Resumes</MudNavLink>
-                                <MudNavLink Href="/admin/github-activity">GitHub Activity Settings</MudNavLink>
+                            <MudMenu Label="Admin" StartIcon="@Icons.Material.Filled.AdminPanelSettings" Class="jem-nav-admin-group jem-nav-admin-menu" AnchorOrigin="Origin.BottomLeft">
+                                <MudMenuItem Href="/admin/resumes">Manage Resumes</MudMenuItem>
+                                <MudMenuItem Href="/admin/github-activity">GitHub Activity Settings</MudMenuItem>
                                 <AuthorizeView Roles="superadmin" Context="superAdminContext">
                                     <Authorized>
-                                        <MudNavLink Href="/projects">Manage Project Listings</MudNavLink>
+                                        <MudMenuItem Href="/projects">Manage Project Listings</MudMenuItem>
                                     </Authorized>
                                 </AuthorizeView>
-                            </MudNavGroup>
+                            </MudMenu>
                         </Authorized>
                     </AuthorizeView>
 
