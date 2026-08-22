@@ -118,6 +118,15 @@ html, body {
   padding-left: 4px;
 }
 
+/* Blends the desktop Admin MudMenu trigger button into the surrounding MudNavLinks
+   instead of looking like a stock Material button. */
+.jem-nav-admin-menu.mud-button-root {
+  color: inherit;
+  text-transform: none;
+  padding: 0 6px;
+  min-width: 0;
+}
+
 @media screen and (max-width: 767px) {
   .jem-nav-desktop {
     display: none;
