@@ -170,6 +170,19 @@ html, body {
   width: 100%;
 }
 
+/* Keeps Save/Cancel reachable without scrolling through every section of a long
+   resume - previously these sat only at the very end of the form. z-index is well
+   above .fixed-row-bottom's decorative footer (-1), which sits at the same viewport
+   edge but must stay visually behind this. */
+.resume-edit-actions-sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  background-color: var(--jem-bg);
+  padding: 12px 0;
+  border-top: 1px solid var(--jem-border);
+}
+
 /* ========================
    Layout
    ======================== */
@@ -353,10 +366,8 @@ code {
   font-size: 0.75em;
   font-weight: 500;
   color: var(--jem-text-muted);
-}
-
-.github-activity-language {
-  margin-right: 12px;
+  margin-top: 4px;
+  display: block;
 }
 
 /* ========================

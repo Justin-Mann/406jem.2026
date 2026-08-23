@@ -35,8 +35,6 @@
   font-size: 0.75em;
   font-weight: 500;
   color: var(--jem-text-muted, #5a6070);
-}
-
-.github-activity-language {
-  margin-right: 12px;
+  margin-top: 4px;
+  display: block;
 }

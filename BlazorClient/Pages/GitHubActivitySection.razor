@@ -35,13 +35,10 @@ else if (state == LoadState.Ready)
                                 {
                                     <p class="github-activity-description">@repo.Description</p>
                                 }
-                                <span class="github-activity-meta">
-                                    @if (!string.IsNullOrWhiteSpace(repo.Language))
-                                    {
-                                        <span class="github-activity-language">@repo.Language</span>
-                                    }
-                                    <span class="github-activity-stars">&#9733; @repo.StargazersCount</span>
-                                </span>
+                                @if (!string.IsNullOrWhiteSpace(repo.Language))
+                                {
+                                    <span class="github-activity-meta">@repo.Language</span>
+                                }
                             </li>
                         }
                     </ul>

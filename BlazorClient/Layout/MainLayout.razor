@@ -17,17 +17,24 @@
                        MudMenu (not MudNavGroup) here deliberately - MudNavGroup expands its
                        children inline, which is right for the vertical drawer below but just
                        wraps into extra rows and pushes/overlaps the rest of the horizontal bar
-                       up here. MudMenu opens as a real popover under the trigger instead. *@
+                       up here. MudMenu opens as a real popover under the trigger instead.
+                       The superadmin-only item below checks context.User.IsInRole directly
+                       rather than nesting a second AuthorizeView - MudMenu's items render
+                       lazily into a portaled popover (via MudPopoverProvider) only once opened,
+                       and a nested AuthorizeView in that portaled tree throws
+                       "Authorization requires a cascading parameter of type Task<AuthenticationState>"
+                       the moment the menu opens, since the cascading value doesn't propagate
+                       through the portal. Reusing the outer AuthorizeView's already-resolved
+                       context.User sidesteps that entirely. *@
                     <AuthorizeView Roles="admin,superadmin">
                         <Authorized>
                             <MudMenu Label="Admin" StartIcon="@Icons.Material.Filled.AdminPanelSettings" Class="jem-nav-admin-group jem-nav-admin-menu" AnchorOrigin="Origin.BottomLeft">
                                 <MudMenuItem Href="/admin/resumes">Manage Resumes</MudMenuItem>
                                 <MudMenuItem Href="/admin/github-activity">GitHub Activity Settings</MudMenuItem>
-                                <AuthorizeView Roles="superadmin" Context="superAdminContext">
-                                    <Authorized>
-                                        <MudMenuItem Href="/projects">Manage Project Listings</MudMenuItem>
-                                    </Authorized>
-                                </AuthorizeView>
+                                @if (context.User.IsInRole("superadmin"))
+                                {
+                                    <MudMenuItem Href="/projects">Manage Project Listings</MudMenuItem>
+                                }
                             </MudMenu>
                         </Authorized>
                     </AuthorizeView>

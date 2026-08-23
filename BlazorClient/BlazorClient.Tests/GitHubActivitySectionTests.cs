@@ -97,7 +97,7 @@ public class GitHubActivitySectionTests : MudBunitTestContext
     }
 
     [Fact]
-    public void RendersDescriptionLanguageAndStars_ForEachRepo()
+    public void RendersDescriptionAndLanguage_ButNotStars_ForEachRepo()
     {
         RegisterService(EnabledSettingsJson, HttpStatusCode.OK, ReposJson, HttpStatusCode.OK);
 
@@ -106,10 +106,28 @@ public class GitHubActivitySectionTests : MudBunitTestContext
         cut.WaitForAssertion(() => Assert.Contains("pinned-repo", cut.Markup));
         Assert.Contains("Pinned one", cut.Markup);
         Assert.Contains("C#", cut.Markup);
-        Assert.Contains("2", cut.Markup);
+        Assert.DoesNotContain("github-activity-stars", cut.Markup);
 
         var link = cut.Find("li.github-activity-item a");
         Assert.Equal("https://github.com/jem/pinned-repo", link.GetAttribute("href"));
         Assert.Equal("_new", link.GetAttribute("target"));
+    }
+
+    [Fact]
+    public void RendersLanguage_WhenRepoHasNoDescription()
+    {
+        const string reposWithNoDescription = """
+            [
+              {"name":"no-desc-repo","html_url":"https://github.com/jem/no-desc-repo","description":null,"language":"C#","stargazers_count":0,"fork":false,"pushed_at":"2026-01-01T00:00:00Z"}
+            ]
+            """;
+        RegisterService(EnabledSettingsJson, HttpStatusCode.OK, reposWithNoDescription, HttpStatusCode.OK);
+
+        var cut = RenderComponent<GitHubActivitySection>();
+
+        cut.WaitForAssertion(() => Assert.Contains("no-desc-repo", cut.Markup));
+        Assert.DoesNotContain("github-activity-description", cut.Markup);
+        Assert.Contains("github-activity-meta", cut.Markup);
+        Assert.Contains("C#", cut.Markup);
     }
 }

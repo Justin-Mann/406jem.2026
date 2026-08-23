@@ -28,7 +28,7 @@ export class GitHubActivityDataService {
           return of(null);
         }
 
-        return this.fetchRepos(settings.gitHubUsername).pipe(
+        return this.getReposForUsername(settings.gitHubUsername).pipe(
           map(repos => repos ? selectRepos(repos, settings.pinnedRepoNames, settings.repoCount) : null)
         );
       }),
@@ -36,7 +36,9 @@ export class GitHubActivityDataService {
     );
   }
 
-  private fetchRepos(username: string): Observable<GitHubRepo[] | null> {
+  /** Also used directly by the admin settings page (#68 follow-up) to populate its "pin from
+   * your repos" picker - emits null on any failure, same as the display path. */
+  getReposForUsername(username: string): Observable<GitHubRepo[] | null> {
     const url = `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=pushed&per_page=100&type=owner`;
     return from(
       fetch(url, { headers: { Accept: 'application/vnd.github+json' } }).then(response => {

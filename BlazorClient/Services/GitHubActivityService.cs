@@ -34,7 +34,7 @@ namespace BlazorApp.BlazorClient.Services
                 return null;
             }
 
-            var repos = await TryGetReposAsync(settings.GitHubUsername);
+            var repos = await GetReposForUsernameAsync(settings.GitHubUsername);
             if (repos is null)
             {
                 return null;
@@ -61,7 +61,9 @@ namespace BlazorApp.BlazorClient.Services
             }
         }
 
-        private async Task<List<GitHubRepoModel>?> TryGetReposAsync(string gitHubUsername)
+        /// <summary>Also used directly by the admin settings page (#68 follow-up) to populate its
+        /// "pin from your repos" picker - returns null on any failure, same as the display path.</summary>
+        public async Task<List<GitHubRepoModel>?> GetReposForUsernameAsync(string gitHubUsername)
         {
             try
             {

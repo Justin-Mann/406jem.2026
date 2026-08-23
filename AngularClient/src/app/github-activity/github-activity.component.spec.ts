@@ -46,7 +46,7 @@ describe('GitHubActivityComponent', () => {
     expect(compiled.textContent).not.toContain('GitHub Activity');
   });
 
-  it('renders each repo with name, description, language, and star count', async () => {
+  it('renders each repo with name, description, and language, but not star count', async () => {
     dataServiceSpy.getActivity.and.returnValue(of(repos));
     await setup();
 
@@ -57,10 +57,25 @@ describe('GitHubActivityComponent', () => {
     expect(compiled.textContent).toContain('pinned-repo');
     expect(compiled.textContent).toContain('Pinned one');
     expect(compiled.textContent).toContain('C#');
-    expect(compiled.textContent).toContain('2');
+    expect(compiled.querySelector('.github-activity-stars')).toBeNull();
 
     const link = compiled.querySelector('a.github-activity-name') as HTMLAnchorElement;
     expect(link.getAttribute('href')).toBe('https://github.com/jem/pinned-repo');
     expect(link.getAttribute('target')).toBe('_blank');
+  });
+
+  it('renders language when a repo has no description', async () => {
+    const noDescriptionRepo: GitHubRepo[] = [
+      { name: 'no-desc-repo', html_url: 'https://github.com/jem/no-desc-repo', description: null, language: 'C#', stargazers_count: 0, fork: false, pushed_at: '2026-01-01T00:00:00Z' }
+    ];
+    dataServiceSpy.getActivity.and.returnValue(of(noDescriptionRepo));
+    await setup();
+
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.github-activity-description')).toBeNull();
+    expect(compiled.querySelector('.github-activity-meta')).not.toBeNull();
+    expect(compiled.textContent).toContain('C#');
   });
 });
