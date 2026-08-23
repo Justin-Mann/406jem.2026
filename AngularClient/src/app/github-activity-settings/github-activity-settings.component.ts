@@ -4,10 +4,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GitHubActivitySettingsDataService } from '../services/data/github-activity-settings-data.service';
+import { GitHubActivityDataService } from '../services/data/github-activity-data.service';
 import { AuthService } from '../services/auth/auth.service';
 import { emptyGitHubActivitySettings, GitHubActivitySettingsDto } from '../interfaces/github-activity-settings.interface';
+import { GitHubRepo } from '../interfaces/github-activity.interface';
 
 @Component({
   selector: 'app-github-activity-settings',
@@ -18,6 +21,7 @@ import { emptyGitHubActivitySettings, GitHubActivitySettingsDto } from '../inter
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatSlideToggleModule,
   ],
   templateUrl: './github-activity-settings.component.html',
@@ -26,6 +30,7 @@ import { emptyGitHubActivitySettings, GitHubActivitySettingsDto } from '../inter
 })
 export class GitHubActivitySettingsComponent implements OnInit {
   private dataService = inject(GitHubActivitySettingsDataService);
+  private gitHubActivityDataService = inject(GitHubActivityDataService);
   authService = inject(AuthService);
 
   settings = signal<GitHubActivitySettingsDto | null>(null);
@@ -33,6 +38,8 @@ export class GitHubActivitySettingsComponent implements OnInit {
   errorMessage = signal<string | null>(null);
   statusMessage = signal<string | null>(null);
   isBusy = signal(false);
+  availableRepos = signal<GitHubRepo[]>([]);
+  reposLoading = signal(false);
 
   ngOnInit(): void {
     this.load();
@@ -41,11 +48,28 @@ export class GitHubActivitySettingsComponent implements OnInit {
   private load(): void {
     this.errorMessage.set(null);
     this.dataService.getMine().subscribe({
-      next: settings => this.settings.set(settings),
+      next: settings => {
+        this.settings.set(settings);
+        this.loadAvailableRepos();
+      },
       error: () => {
         this.errorMessage.set('Could not load your GitHub Activity settings.');
         this.settings.set(emptyGitHubActivitySettings());
       }
+    });
+  }
+
+  loadAvailableRepos(): void {
+    const username = this.settings()?.gitHubUsername;
+    if (!username) {
+      this.availableRepos.set([]);
+      return;
+    }
+
+    this.reposLoading.set(true);
+    this.gitHubActivityDataService.getReposForUsername(username).subscribe(repos => {
+      this.reposLoading.set(false);
+      this.availableRepos.set((repos ?? []).filter(r => !r.fork));
     });
   }
 
@@ -63,6 +87,33 @@ export class GitHubActivitySettingsComponent implements OnInit {
     if (!settings) return;
 
     this.settings.set({ ...settings, pinnedRepoNames: settings.pinnedRepoNames.filter((_, i) => i !== index) });
+  }
+
+  movePinnedRepoUp(index: number): void {
+    const settings = this.settings();
+    if (!settings || index <= 0) return;
+
+    const names = [...settings.pinnedRepoNames];
+    [names[index - 1], names[index]] = [names[index], names[index - 1]];
+    this.settings.set({ ...settings, pinnedRepoNames: names });
+  }
+
+  movePinnedRepoDown(index: number): void {
+    const settings = this.settings();
+    if (!settings || index >= settings.pinnedRepoNames.length - 1) return;
+
+    const names = [...settings.pinnedRepoNames];
+    [names[index + 1], names[index]] = [names[index], names[index + 1]];
+    this.settings.set({ ...settings, pinnedRepoNames: names });
+  }
+
+  onPinnedSelectionChange(selected: string[]): void {
+    const settings = this.settings();
+    if (!settings) return;
+
+    const stillPinned = settings.pinnedRepoNames.filter(n => selected.includes(n));
+    const added = selected.filter(n => !settings.pinnedRepoNames.includes(n));
+    this.settings.set({ ...settings, pinnedRepoNames: [...stillPinned, ...added] });
   }
 
   save(): void {

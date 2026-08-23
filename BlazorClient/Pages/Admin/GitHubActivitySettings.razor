@@ -1,6 +1,8 @@
 @page "/admin/github-activity"
 @using BlazorApp.Models
+@using BlazorApp.BlazorClient.Services
 @inject HttpClient Http
+@inject GitHubActivityService GitHubActivityService
 
 <PageTitle>GitHub Activity Settings</PageTitle>
 
@@ -38,16 +40,44 @@
                         <MudNumericField T="int" Label="Repo count" Placeholder="Repo count" @bind-Value="settings.RepoCount" Min="1" Class="mb-2 github-activity-repocount-input" />
 
                         <MudText Typo="Typo.subtitle1" Class="mb-2">Pinned Repos</MudText>
+                        <MudText Typo="Typo.caption" Class="mb-2">
+                            Shown first on your public resume, in this order - reorder with the arrows below.
+                        </MudText>
+                        @if (settings.PinnedRepoNames.Count == 0)
+                        {
+                            <MudText Typo="Typo.body2" Class="mb-2 github-activity-pinned-empty">No repos pinned yet.</MudText>
+                        }
+                        else
+                        {
+                            <div class="mb-2 github-activity-pinned-list">
+                                @for (var i = 0; i < settings.PinnedRepoNames.Count; i++)
+                                {
+                                    var index = i;
+                                    <MudStack Row="true" Spacing="1" Class="mb-1 align-center github-activity-pinned-item">
+                                        <MudText Class="flex-grow-1">@settings.PinnedRepoNames[index]</MudText>
+                                        <MudIconButton Icon="@Icons.Material.Filled.ArrowUpward" Size="Size.Small" Disabled="@(index == 0)" Class="github-activity-pinned-up-btn" OnClick="() => MovePinnedRepoUp(index)" />
+                                        <MudIconButton Icon="@Icons.Material.Filled.ArrowDownward" Size="Size.Small" Disabled="@(index == settings.PinnedRepoNames.Count - 1)" Class="github-activity-pinned-down-btn" OnClick="() => MovePinnedRepoDown(index)" />
+                                        <MudIconButton Icon="@Icons.Material.Filled.Close" Size="Size.Small" Color="Color.Error" Class="github-activity-pinned-remove-btn" OnClick="() => RemovePinnedRepo(index)" />
+                                    </MudStack>
+                                }
+                            </div>
+                        }
+
                         <MudStack Row="true" Spacing="2" Class="mb-2 align-center">
-                            <MudTextField T="string" Placeholder="Repo name" @bind-Value="newPinnedRepo" Immediate="true" Class="flex-grow-1 github-activity-pinned-input" />
-                            <MudButton Variant="Variant.Outlined" Size="Size.Small" Class="github-activity-pinned-add-btn" OnClick="AddPinnedRepo">+ Add</MudButton>
+                            <MudSelect T="string" Label="Pin from your repos" MultiSelection="true" @bind-SelectedValues="pinnedSetForSelect"
+                                       Class="flex-grow-1 github-activity-available-repos-select" Disabled="@(availableRepos.Count == 0)"
+                                       Placeholder="@(reposLoading ? "Loading your repos..." : "No repos loaded")">
+                                @foreach (var repo in availableRepos)
+                                {
+                                    <MudSelectItem T="string" Value="@repo.Name">@repo.Name</MudSelectItem>
+                                }
+                            </MudSelect>
+                            <MudButton Variant="Variant.Outlined" Size="Size.Small" Disabled="@reposLoading" Class="github-activity-refresh-repos-btn" OnClick="LoadAvailableReposAsync">Refresh list</MudButton>
                         </MudStack>
-                        <MudStack Row="true" Wrap="Wrap.Wrap" Spacing="2" Class="mb-2 github-activity-pinned-list">
-                            @for (var i = 0; i < settings.PinnedRepoNames.Count; i++)
-                            {
-                                var index = i;
-                                <MudChip T="string" Value="@settings.PinnedRepoNames[index]" Class="github-activity-pinned-chip" OnClose="() => RemovePinnedRepo(index)">@settings.PinnedRepoNames[index]</MudChip>
-                            }
+
+                        <MudStack Row="true" Spacing="2" Class="mb-2 align-center">
+                            <MudTextField T="string" Placeholder="Or add by name" @bind-Value="newPinnedRepo" Immediate="true" Class="flex-grow-1 github-activity-pinned-input" />
+                            <MudButton Variant="Variant.Outlined" Size="Size.Small" Class="github-activity-pinned-add-btn" OnClick="AddPinnedRepo">+ Add</MudButton>
                         </MudStack>
                     </MudCardContent>
                 </MudCard>
@@ -69,10 +99,33 @@
     private string? statusMessage;
     private string newPinnedRepo = string.Empty;
     private bool isBusy;
+    private List<GitHubRepoModel> availableRepos = new();
+    private bool reposLoading;
+
+    // MudSelect's MultiSelection binds through this rather than settings.PinnedRepoNames
+    // directly, so a newly-checked repo can be appended to the end (preserving existing pin
+    // order) instead of wherever MudSelect would otherwise place it.
+    private IEnumerable<string> pinnedSetForSelect
+    {
+        get => settings?.PinnedRepoNames ?? new List<string>();
+        set
+        {
+            if (settings is null)
+            {
+                return;
+            }
+
+            var newSelection = value.ToList();
+            var stillPinned = settings.PinnedRepoNames.Where(newSelection.Contains).ToList();
+            var added = newSelection.Where(name => !settings.PinnedRepoNames.Contains(name));
+            settings.PinnedRepoNames = stillPinned.Concat(added).ToList();
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
         await LoadAsync();
+        await LoadAvailableReposAsync();
     }
 
     private async Task LoadAsync()
@@ -87,6 +140,42 @@
             errorMessage = "Could not load your GitHub Activity settings.";
             settings = new GitHubActivitySettingsDto();
         }
+    }
+
+    private async Task LoadAvailableReposAsync()
+    {
+        if (settings is null || string.IsNullOrWhiteSpace(settings.GitHubUsername))
+        {
+            availableRepos = new();
+            return;
+        }
+
+        reposLoading = true;
+        var repos = await GitHubActivityService.GetReposForUsernameAsync(settings.GitHubUsername);
+        availableRepos = (repos ?? new()).Where(r => !r.Fork).ToList();
+        reposLoading = false;
+    }
+
+    private void MovePinnedRepoUp(int index)
+    {
+        if (settings is null || index <= 0)
+        {
+            return;
+        }
+
+        (settings.PinnedRepoNames[index - 1], settings.PinnedRepoNames[index]) =
+            (settings.PinnedRepoNames[index], settings.PinnedRepoNames[index - 1]);
+    }
+
+    private void MovePinnedRepoDown(int index)
+    {
+        if (settings is null || index >= settings.PinnedRepoNames.Count - 1)
+        {
+            return;
+        }
+
+        (settings.PinnedRepoNames[index + 1], settings.PinnedRepoNames[index]) =
+            (settings.PinnedRepoNames[index], settings.PinnedRepoNames[index + 1]);
     }
 
     private void AddPinnedRepo()

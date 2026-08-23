@@ -26,12 +26,9 @@
                 @if (repo.description) {
                   <p class="github-activity-description">{{ repo.description }}</p>
                 }
-                <span class="github-activity-meta">
-                  @if (repo.language) {
-                    <span class="github-activity-language">{{ repo.language }}</span>
-                  }
-                  <span class="github-activity-stars">&#9733; {{ repo.stargazers_count }}</span>
-                </span>
+                @if (repo.language) {
+                  <span class="github-activity-meta">{{ repo.language }}</span>
+                }
               </li>
             }
           </ul>

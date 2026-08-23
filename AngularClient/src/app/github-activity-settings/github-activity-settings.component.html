@@ -38,20 +38,46 @@
                         </mat-form-field>
 
                         <h4 class="mb-2">Pinned Repos</h4>
+                        <p class="github-activity-pinned-hint mb-2">
+                            Shown first on your public resume, in this order - reorder with the arrows below.
+                        </p>
+                        @if (settings()!.pinnedRepoNames.length === 0) {
+                            <p class="github-activity-pinned-empty mb-2">No repos pinned yet.</p>
+                        } @else {
+                            <ul class="github-activity-pinned-list mb-2">
+                                @for (repo of settings()!.pinnedRepoNames; track repo; let i = $index; let last = $last) {
+                                    <li class="github-activity-pinned-item d-flex justify-content-between align-items-center">
+                                        <span>{{ repo }}</span>
+                                        <span>
+                                            <button type="button" mat-icon-button class="github-activity-pinned-up-btn" [disabled]="i === 0" (click)="movePinnedRepoUp(i)"><i class="bi bi-arrow-up"></i></button>
+                                            <button type="button" mat-icon-button class="github-activity-pinned-down-btn" [disabled]="last" (click)="movePinnedRepoDown(i)"><i class="bi bi-arrow-down"></i></button>
+                                            <button type="button" mat-icon-button color="warn" class="github-activity-pinned-remove-btn" (click)="removePinnedRepo(i)"><i class="bi bi-x-lg"></i></button>
+                                        </span>
+                                    </li>
+                                }
+                            </ul>
+                        }
+
                         <div class="d-flex gap-2 align-items-center mb-2">
                             <mat-form-field appearance="outline" class="flex-grow-1">
-                                <input matInput placeholder="Repo name" name="newPinnedRepo" class="github-activity-pinned-input" [ngModel]="newPinnedRepo()" (ngModelChange)="newPinnedRepo.set($event)" />
+                                <mat-label>Pin from your repos</mat-label>
+                                <mat-select multiple [value]="settings()!.pinnedRepoNames" (selectionChange)="onPinnedSelectionChange($event.value)"
+                                            [disabled]="availableRepos().length === 0" class="github-activity-available-repos-select"
+                                            [placeholder]="reposLoading() ? 'Loading your repos...' : 'No repos loaded'">
+                                    @for (repo of availableRepos(); track repo.name) {
+                                        <mat-option [value]="repo.name">{{ repo.name }}</mat-option>
+                                    }
+                                </mat-select>
+                            </mat-form-field>
+                            <button type="button" mat-stroked-button class="github-activity-refresh-repos-btn" [disabled]="reposLoading()" (click)="loadAvailableRepos()">Refresh list</button>
+                        </div>
+
+                        <div class="d-flex gap-2 align-items-center mb-2">
+                            <mat-form-field appearance="outline" class="flex-grow-1">
+                                <input matInput placeholder="Or add by name" name="newPinnedRepo" class="github-activity-pinned-input" [ngModel]="newPinnedRepo()" (ngModelChange)="newPinnedRepo.set($event)" />
                             </mat-form-field>
                             <button type="button" mat-stroked-button class="github-activity-pinned-add-btn" (click)="addPinnedRepo()">+ Add</button>
                         </div>
-                        <ul class="github-activity-pinned-list mb-2">
-                            @for (repo of settings()!.pinnedRepoNames; track $index) {
-                                <li class="github-activity-pinned-item d-flex justify-content-between align-items-center">
-                                    <span>{{ repo }}</span>
-                                    <button type="button" mat-icon-button color="warn" class="github-activity-pinned-remove-btn" (click)="removePinnedRepo($index)"><i class="bi bi-x-lg"></i></button>
-                                </li>
-                            }
-                        </ul>
                     </mat-card-content>
                 </mat-card>
 
