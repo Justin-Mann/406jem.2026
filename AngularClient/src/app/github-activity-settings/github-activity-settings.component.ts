@@ -69,7 +69,9 @@ export class GitHubActivitySettingsComponent implements OnInit {
     this.reposLoading.set(true);
     this.gitHubActivityDataService.getReposForUsername(username).subscribe(repos => {
       this.reposLoading.set(false);
-      this.availableRepos.set((repos ?? []).filter(r => !r.fork));
+      // Includes forks - unlike the display page's automatic fill-by-recency, pinning here is
+      // a deliberate admin choice, and selectRepos now honors a pinned fork regardless.
+      this.availableRepos.set(repos ?? []);
     });
   }
 

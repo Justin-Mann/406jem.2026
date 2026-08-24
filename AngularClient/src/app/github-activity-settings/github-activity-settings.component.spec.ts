@@ -56,11 +56,13 @@ describe('GitHubActivitySettingsComponent', () => {
     expect(component.settings()).toEqual(mySettings);
   });
 
-  it('loads the available repos for the configured username, excluding forks', () => {
+  it('loads the available repos for the configured username, including forks', () => {
     fixture.detectChanges();
 
     expect(gitHubActivityDataServiceSpy.getReposForUsername).toHaveBeenCalledWith('justin-mann');
-    expect(component.availableRepos().map(r => r.name)).toEqual(['406jem.2026', 'another-repo']);
+    // Forks ARE offered here - unlike the display page's automatic fill, pinning is a
+    // deliberate admin choice, so all public repos (including forks) should be pickable.
+    expect(component.availableRepos().map(r => r.name)).toEqual(['406jem.2026', 'another-repo', 'a-fork']);
   });
 
   it('shows an access-required message for a non-admin visitor', () => {

@@ -92,4 +92,10 @@ describe('selectRepos', () => {
 
     expect(result.map(r => r.name)).toEqual(['pinned-repo']);
   });
+
+  it('includes a pinned fork, since pinning is a deliberate choice, but still excludes forks from automatic fill', () => {
+    const result = selectRepos(repos, ['a-fork'], 4);
+
+    expect(result.map(r => r.name)).toEqual(['a-fork', 'newest-repo', 'older-repo', 'pinned-repo']);
+  });
 });

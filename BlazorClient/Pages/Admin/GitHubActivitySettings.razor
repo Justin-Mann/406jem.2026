@@ -152,7 +152,9 @@
 
         reposLoading = true;
         var repos = await GitHubActivityService.GetReposForUsernameAsync(settings.GitHubUsername);
-        availableRepos = (repos ?? new()).Where(r => !r.Fork).ToList();
+        // Includes forks - unlike the display page's automatic fill-by-recency, pinning here is
+        // a deliberate admin choice, and SelectRepos now honors a pinned fork regardless.
+        availableRepos = repos ?? new();
         reposLoading = false;
     }
 

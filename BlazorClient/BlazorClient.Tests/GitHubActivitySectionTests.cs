@@ -16,6 +16,10 @@ public class GitHubActivitySectionTests : MudBunitTestContext
         {"enabled":true,"gitHubUsername":"jem","repoCount":3,"pinnedRepoNames":["pinned-repo"]}
         """;
 
+    private const string PinnedForkSettingsJson = """
+        {"enabled":true,"gitHubUsername":"jem","repoCount":4,"pinnedRepoNames":["a-fork"]}
+        """;
+
     private const string ReposJson = """
         [
           {"name":"pinned-repo","html_url":"https://github.com/jem/pinned-repo","description":"Pinned one","language":"C#","stargazers_count":2,"fork":false,"pushed_at":"2026-01-01T00:00:00Z"},
@@ -94,6 +98,22 @@ public class GitHubActivitySectionTests : MudBunitTestContext
         // (newest-repo, older-repo) - a-fork is excluded despite the most recent push date.
         Assert.Equal(new[] { "pinned-repo", "newest-repo", "older-repo" }, names);
         Assert.DoesNotContain("a-fork", cut.Markup);
+    }
+
+    [Fact]
+    public void RendersPinnedFork_ButStillExcludesForksFromAutomaticFill()
+    {
+        RegisterService(PinnedForkSettingsJson, HttpStatusCode.OK, ReposJson, HttpStatusCode.OK);
+
+        var cut = RenderComponent<GitHubActivitySection>();
+
+        cut.WaitForAssertion(() => Assert.Contains("a-fork", cut.Markup));
+
+        var names = cut.FindAll("li.github-activity-item a").Select(a => a.TextContent).ToList();
+
+        // repoCount is 4: a-fork (pinned, included despite being a fork) then the remaining
+        // non-forks by recency - pinning is a deliberate choice, automatic fill still isn't.
+        Assert.Equal(new[] { "a-fork", "newest-repo", "older-repo", "pinned-repo" }, names);
     }
 
     [Fact]

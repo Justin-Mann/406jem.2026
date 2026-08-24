@@ -144,7 +144,10 @@ public class GitHubActivitySettingsPageTests : MudBunitTestContext
         // render root rather than the page's - not in cut.Markup even once opened.
         cut.Find(".github-activity-available-repos-select input").Click();
         popovers.WaitForAssertion(() => Assert.Contains("another-repo", popovers.Markup));
-        Assert.DoesNotContain("a-fork", popovers.Markup);
+
+        // Forks ARE offered here - unlike the display page's automatic fill, pinning is a
+        // deliberate admin choice, so all public repos (including forks) should be pickable.
+        Assert.Contains("a-fork", popovers.Markup);
     }
 
     [Fact]
