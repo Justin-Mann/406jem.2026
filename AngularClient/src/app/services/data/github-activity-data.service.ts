@@ -51,12 +51,13 @@ export class GitHubActivityDataService {
   }
 }
 
-/** Pinned repos first (in pinned order, skipping names that don't match any fetched repo), then
- * the remaining non-fork repos by most-recently-pushed, up to repoCount total - pinned repos
- * count toward that total, they don't add to it. */
+/** Pinned repos first (in pinned order, skipping names that don't match any fetched repo - forks
+ * included, since pinning is a deliberate admin choice), then the remaining non-fork repos by
+ * most-recently-pushed, up to repoCount total - pinned repos count toward that total, they don't
+ * add to it. */
 export function selectRepos(repos: GitHubRepo[], pinnedRepoNames: string[], repoCount: number): GitHubRepo[] {
+  const byName = new Map(repos.map(r => [r.name.toLowerCase(), r]));
   const nonForks = repos.filter(r => !r.fork);
-  const byName = new Map(nonForks.map(r => [r.name.toLowerCase(), r]));
 
   const used = new Set<string>();
   const result: GitHubRepo[] = [];

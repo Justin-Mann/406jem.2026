@@ -77,15 +77,17 @@ namespace BlazorApp.BlazorClient.Services
         }
 
         /// <summary>Pinned repos first (in pinned order, skipping names that don't match any
-        /// fetched repo), then the remaining non-fork repos by most-recently-pushed, up to
-        /// RepoCount total - pinned repos count toward that total, they don't add to it.</summary>
+        /// fetched repo - forks included, since pinning is a deliberate admin choice), then the
+        /// remaining non-fork repos by most-recently-pushed, up to RepoCount total - pinned
+        /// repos count toward that total, they don't add to it.</summary>
         internal static List<GitHubRepoModel> SelectRepos(
             IEnumerable<GitHubRepoModel> repos, IReadOnlyList<string> pinnedRepoNames, int repoCount)
         {
-            var nonForks = repos.Where(r => !r.Fork).ToList();
-            var byName = nonForks
+            var allRepos = repos.ToList();
+            var byName = allRepos
                 .GroupBy(r => r.Name, StringComparer.OrdinalIgnoreCase)
                 .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+            var nonForks = allRepos.Where(r => !r.Fork).ToList();
 
             var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var result = new List<GitHubRepoModel>();
