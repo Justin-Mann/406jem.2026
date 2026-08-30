@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salutaris — Brand Identity Guide v1</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<!-- Second font-pairing option (Typography control, brand-switcher panel) — both
+     pairings load upfront so switching is instant with no network wait. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --forest:     #243D2E;
@@ -756,6 +759,11 @@ tr:last-child td { border-bottom: none; }
   letter-spacing: 3px; text-transform: uppercase;
   color: rgba(240,232,214,0.88); position: relative; z-index: 1;
 }
+.mkt-mark {
+  position: absolute; top: 14px; right: 16px;
+  width: 26px; height: 26px; z-index: 1; opacity: 0.9;
+}
+.mkt-mark svg { display: block; width: 100%; height: 100%; }
 .marketing-card-body { padding: 28px; background: var(--white); }
 .marketing-card-body h4 {
   font-family: var(--ff-serif); font-size: 19px;
@@ -1056,6 +1064,14 @@ footer {
   pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 10;
 }
 .sw-icon-btn:hover .sw-icon-tip { opacity: 1; }
+
+/* Font cards reuse .sw-pal-card's exact layout/states — only the leading
+   "swatch" slot differs (a lettered sample instead of color dots). */
+.sw-font-sample {
+  width: 34px; height: 28px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--linen); color: var(--charcoal); font-size: 15px;
+}
 
 /* ══════════════════════════════════════════════════════════
    RESPONSIVE — everything above this line is the original
@@ -1373,7 +1389,7 @@ footer {
         <span class="type-eyebrow">Primary · Display &amp; Headlines</span>
         <div class="type-display">Salutaris</div>
         <div class="type-display-italic">Pure by nature.</div>
-        <div class="type-meta">EB Garamond · 400 / Italic 400 · Google Fonts</div>
+        <div class="type-meta" id="type-meta-serif">EB Garamond · 400 / Italic 400 · Google Fonts</div>
         <div class="type-scale">
           <div class="type-scale-row">
             <span class="type-size-tag">72px</span>
@@ -1397,7 +1413,7 @@ footer {
       <div class="type-block">
         <span class="type-eyebrow">Secondary · Labels, Body &amp; Functional</span>
         <div class="type-sans-display">Organic Oils</div>
-        <div class="type-meta">Jost · 200 / 300 / 400 / 500 · Google Fonts</div>
+        <div class="type-meta" id="type-meta-sans">Jost · 200 / 300 / 400 / 500 · Google Fonts</div>
         <div class="type-scale">
           <div class="type-scale-row">
             <span class="type-size-tag">500</span>
@@ -2121,15 +2137,17 @@ footer {
             <span class="label-pair-subtitle pair-back-tag">Back Label</span>
             <div class="label label-light" style="padding:18px 20px 16px">
               <div class="blb-mark-row">
-                <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
-                  <polygon points="120,18 33,170 207,170" stroke="#243D2E" stroke-width="9" stroke-linejoin="round" fill="none"/>
-                  <line x1="94" y1="64" x2="40" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="70" y1="106" x2="12" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="146" y1="64" x2="200" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="170" y1="106" x2="228" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="88" y1="170" x2="88" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
-                </svg>
+                <div id="mark-label-skin" data-brightness="light" style="width:13px;height:13px">
+                  <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
+                    <polygon points="120,18 33,170 207,170" stroke="#243D2E" stroke-width="9" stroke-linejoin="round" fill="none"/>
+                    <line x1="94" y1="64" x2="40" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="70" y1="106" x2="12" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="146" y1="64" x2="200" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="170" y1="106" x2="228" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="88" y1="170" x2="88" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <span class="label-brand" style="margin-bottom:0;text-align:center">Salutaris</span>
               </div>
 
@@ -2206,15 +2224,17 @@ footer {
             <span class="label-pair-subtitle pair-back-tag">Back Label</span>
             <div class="label label-dark" style="padding:18px 20px 16px">
               <div class="blb-mark-row">
-                <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
-                  <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
-                  <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
-                </svg>
+                <div id="mark-label-hair" data-brightness="dark" style="width:13px;height:13px">
+                  <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
+                    <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+                    <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <span class="label-brand" style="margin-bottom:0;text-align:center">Salutaris</span>
               </div>
 
@@ -2291,15 +2311,17 @@ footer {
             <span class="label-pair-subtitle pair-back-tag">Back Label</span>
             <div class="label label-terra" style="padding:18px 20px 16px">
               <div class="blb-mark-row">
-                <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
-                  <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
-                  <line x1="94" y1="64" x2="40" y2="20" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="70" y1="106" x2="12" y2="90" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="146" y1="64" x2="200" y2="20" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="170" y1="106" x2="228" y2="90" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
-                  <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
-                </svg>
+                <div id="mark-label-terra" data-brightness="dark" style="width:13px;height:13px">
+                  <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
+                    <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+                    <line x1="94" y1="64" x2="40" y2="20" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="70" y1="106" x2="12" y2="90" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="146" y1="64" x2="200" y2="20" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="170" y1="106" x2="228" y2="90" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <span class="label-brand" style="margin-bottom:0;text-align:center">Salutaris</span>
               </div>
 
@@ -2377,7 +2399,7 @@ footer {
       <div class="cards-stack">
         <div class="card-set-label">Front</div>
         <div class="biz-card biz-card-front">
-          <div class="card-logo-mark" aria-hidden="true">
+          <div class="card-logo-mark" id="mark-card-front" data-brightness="dark" aria-hidden="true">
             <svg viewBox="0 0 240 240" fill="none">
               <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
               <line x1="94"  y1="64"  x2="40"  y2="20"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
@@ -2473,6 +2495,17 @@ footer {
     <div class="marketing-grid">
       <div class="marketing-card">
         <div class="marketing-card-top" style="background:var(--forest)">
+          <div class="mkt-mark" id="mark-mkt-1" data-brightness="dark">
+            <svg viewBox="0 0 240 240" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
           <span class="mkt-top-label">Priority 01</span>
         </div>
         <div class="marketing-card-body">
@@ -2490,6 +2523,17 @@ footer {
 
       <div class="marketing-card">
         <div class="marketing-card-top" style="background:var(--earth)">
+          <div class="mkt-mark" id="mark-mkt-2" data-brightness="dark">
+            <svg viewBox="0 0 240 240" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
           <span class="mkt-top-label">Priority 02</span>
         </div>
         <div class="marketing-card-body">
@@ -2507,6 +2551,17 @@ footer {
 
       <div class="marketing-card">
         <div class="marketing-card-top" style="background:var(--charcoal)">
+          <div class="mkt-mark" id="mark-mkt-3" data-brightness="dark">
+            <svg viewBox="0 0 240 240" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
           <span class="mkt-top-label">Priority 03</span>
         </div>
         <div class="marketing-card-body">
@@ -2524,6 +2579,17 @@ footer {
 
       <div class="marketing-card">
         <div class="marketing-card-top" style="background:var(--terracotta)">
+          <div class="mkt-mark" id="mark-mkt-4" data-brightness="dark">
+            <svg viewBox="0 0 240 240" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
           <span class="mkt-top-label">Priority 04</span>
         </div>
         <div class="marketing-card-body">
@@ -2541,6 +2607,17 @@ footer {
 
       <div class="marketing-card">
         <div class="marketing-card-top" style="background:var(--sage)">
+          <div class="mkt-mark" id="mark-mkt-5" data-brightness="dark">
+            <svg viewBox="0 0 240 240" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
           <span class="mkt-top-label">Future</span>
         </div>
         <div class="marketing-card-body">
@@ -2557,6 +2634,17 @@ footer {
 
       <div class="marketing-card">
         <div class="marketing-card-top" style="background:var(--stone)">
+          <div class="mkt-mark" id="mark-mkt-6" data-brightness="dark">
+            <svg viewBox="0 0 240 240" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
           <span class="mkt-top-label">Future</span>
         </div>
         <div class="marketing-card-body">
@@ -2709,6 +2797,9 @@ footer {
     <div class="sw-divider"></div>
     <span class="sw-label">Primary Mark</span>
     <div class="sw-icon-grid" id="sw-icon-grid"></div>
+    <div class="sw-divider"></div>
+    <span class="sw-label">Typography</span>
+    <div id="sw-font-list"></div>
   </div>
   <button id="sw-toggle" aria-label="Open brand switcher" aria-expanded="false">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -2758,6 +2849,7 @@ const PALETTES = {
     dots: ['#243D2E','#5E7A58','#8C5242','#9B7B3D','#F0E8D6'],
     navBg: 'rgba(240,232,214,0.94)',
     defaultMark: 'bold-twotone',
+    defaultFont: 'garamond-jost',
     cells: {
       dark:   { s: '#F0E8D6', a: '#C8A97A' },
       forest: { s: '#F0E8D6', a: '#C8A97A' },
@@ -2801,6 +2893,7 @@ const PALETTES = {
     dots: ['#1E2240','#4B5FA0','#9B6B8A','#8E6AAE','#F2EEF8'],
     navBg: 'rgba(242,238,248,0.94)',
     defaultMark: 'hairline-3branch',
+    defaultFont: 'fraunces-karla',
     cells: {
       dark:   { s: '#F2EEF8', a: '#8E6AAE' },
       forest: { s: '#F2EEF8', a: '#8E6AAE' },
@@ -2912,13 +3005,125 @@ const MARKS = {
 
 const MARK_ORDER = ['bold-twotone','bold-mono','hairline-3branch','medium-hybrid','bold-seal','hairline-seal'];
 
+// ── Typography control — a named theme (palette) sets this as a *default*
+// (PALETTES[x].defaultFont) but it's independently overridable afterward,
+// same relationship a theme already has with its default mark. ──
+const FONTS = {
+  'garamond-jost': {
+    id: 'garamond-jost',
+    name: 'Classical Apothecary',
+    serif: "'EB Garamond', Georgia, serif",
+    sans:  "'Jost', sans-serif",
+    serifLabel: 'EB Garamond',
+    sansLabel:  'Jost',
+    serifMeta: 'EB Garamond · 400 / Italic 400 · Google Fonts',
+    sansMeta:  'Jost · 200 / 300 / 400 / 500 · Google Fonts',
+  },
+  'fraunces-karla': {
+    id: 'fraunces-karla',
+    name: 'Warm Botanical Craft',
+    serif: "'Fraunces', Georgia, serif",
+    sans:  "'Karla', sans-serif",
+    serifLabel: 'Fraunces',
+    sansLabel:  'Karla',
+    serifMeta: 'Fraunces · 400 / Italic 400 · Google Fonts',
+    sansMeta:  'Karla · 200 / 300 / 400 / 500 · Google Fonts',
+  },
+};
+const FONT_ORDER = ['garamond-jost', 'fraunces-karla'];
+
+// ── Element IDs that must reflect the *currently selected* mark, beyond the
+// three "Logo System" preview cells (updateLogoCells, below) — the business
+// card, the three label back-marks, and the six marketing-card marks. The
+// 18-concept showcase grids (Batch 1/2/3) are deliberately NOT in this list:
+// those exist to compare every option side by side and must stay static
+// regardless of what's currently selected. `px: null` means the mark's SVG
+// is sized by CSS (`width/height:100%` on its container); a number sizes
+// the SVG itself directly, matching how each element's markup was built. */
+const DYNAMIC_MARK_TARGETS = [
+  { id: 'mark-label-skin',  px: 13 },
+  { id: 'mark-label-hair',  px: 13 },
+  { id: 'mark-label-terra', px: 13 },
+  { id: 'mark-card-front',  px: null },
+  { id: 'mark-mkt-1', px: null },
+  { id: 'mark-mkt-2', px: null },
+  { id: 'mark-mkt-3', px: null },
+  { id: 'mark-mkt-4', px: null },
+  { id: 'mark-mkt-5', px: null },
+  { id: 'mark-mkt-6', px: null },
+];
+
 let activePalette = 'forest';
 let activeMark    = 'bold-twotone';
+let activeFont    = 'garamond-jost';
 
 // ── Build an SVG string for a given mark + colors ──
 function markSVG(markId, struct, accent, size) {
   const m = MARKS[markId];
   return `<svg viewBox="0 0 ${m.vw} ${m.vh}" width="${size}" height="${size}" fill="none" style="margin:0 auto 14px;display:block;">${m.p(struct, accent, m.sw)}</svg>`;
+}
+
+// ── Same, but for the dynamic application instances above: no auto-center
+// margin (each host element positions its own icon), and `px` is optional. ──
+function markSVGForInstance(markId, struct, accent, px) {
+  const m = MARKS[markId];
+  const wh = px ? ` width="${px}" height="${px}"` : '';
+  return `<svg viewBox="0 0 ${m.vw} ${m.vh}"${wh} fill="none">${m.p(struct, accent, m.sw)}</svg>`;
+}
+
+// ── Push the current palette + mark into every "live application" instance
+// (card, labels, marketing cards) — each one's data-brightness attribute
+// says which of the palette's dark/light color pairs it should use. ──
+function updateDynamicMarkInstances(palId, markId) {
+  const pal = PALETTES[palId];
+  DYNAMIC_MARK_TARGETS.forEach(({ id, px }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const brightness = el.dataset.brightness === 'light' ? 'light' : 'dark';
+    const { s, a } = pal.cells[brightness];
+    el.innerHTML = markSVGForInstance(markId, s, a, px);
+  });
+}
+
+// ── Apply a font pairing: sets the two CSS vars every typographic rule in
+// this document already reads from, and updates the two factual spec labels
+// in the Typography section (the descriptive lead paragraph above them stays
+// static — it's prose about the primary pairing's rationale, not a live spec
+// readout, so rewriting it isn't in scope here). ──
+function applyFont(fontId) {
+  const f = FONTS[fontId];
+  if (!f) return;
+  const root = document.documentElement;
+  root.style.setProperty('--ff-serif', f.serif);
+  root.style.setProperty('--ff-sans', f.sans);
+  const metaSerif = document.getElementById('type-meta-serif');
+  const metaSans  = document.getElementById('type-meta-sans');
+  if (metaSerif) metaSerif.textContent = f.serifMeta;
+  if (metaSans)  metaSans.textContent  = f.sansMeta;
+  activeFont = fontId;
+  document.querySelectorAll('.sw-font-card').forEach(c => c.classList.toggle('active', c.dataset.font === fontId));
+}
+
+// ── Build the font picker list (mirrors buildPaletteList's card layout) ──
+function buildFontList(activeFontId) {
+  const list = document.getElementById('sw-font-list');
+  if (!list) return;
+  list.innerHTML = '';
+  FONT_ORDER.forEach(fontId => {
+    const f = FONTS[fontId];
+    const card = document.createElement('div');
+    card.className = 'sw-pal-card sw-font-card' + (fontId === activeFontId ? ' active' : '');
+    card.dataset.font = fontId;
+    card.innerHTML = `
+      <div class="sw-font-sample" style="font-family:${f.serif}">Aa</div>
+      <div class="sw-pal-info">
+        <span class="sw-pal-name">${f.name}</span>
+        <span class="sw-pal-sub">${f.serifLabel} + ${f.sansLabel}</span>
+      </div>
+      <span class="sw-pal-check">✓</span>`;
+    card.addEventListener('click', () => applyFont(fontId));
+    list.appendChild(card);
+  });
 }
 
 // ── Update the 3 featured logo cells ──
@@ -2988,6 +3193,7 @@ function buildIconGrid(palId, activeMarkId) {
       document.querySelectorAll('.sw-icon-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       updateLogoCells(activePalette, markId);
+      updateDynamicMarkInstances(activePalette, markId);
     });
     grid.appendChild(btn);
   });
@@ -3026,10 +3232,16 @@ function applyPalette(palId) {
   if (nav) nav.style.background = pal.navBg;
   updateCoverSwatches(palId);
   buildSwatchGrids(palId);
-  // Switch to default mark for this palette
+  // Switch to default mark + font for this palette — these are only
+  // *defaults* the theme suggests; the icon grid / font list below let you
+  // override either one independently afterward without affecting the
+  // palette choice.
   activeMark = pal.defaultMark;
   updateLogoCells(palId, activeMark);
   buildIconGrid(palId, activeMark);
+  updateDynamicMarkInstances(palId, activeMark);
+  applyFont(pal.defaultFont);
+  buildFontList(pal.defaultFont);
   // Update palette card active states
   document.querySelectorAll('.sw-pal-card').forEach(c => c.classList.toggle('active', c.dataset.palette === palId));
   activePalette = palId;
@@ -3063,6 +3275,8 @@ document.addEventListener('keydown', e => {
 // ── Init ──
 buildPaletteList(activePalette);
 buildIconGrid(activePalette, activeMark);
+buildFontList(activeFont);
+updateDynamicMarkInstances(activePalette, activeMark);
 </script>
 </body>
 </html>
