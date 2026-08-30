@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salutaris — Brand Identity Guide v1</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:     #243D2E;
+  --sage:       #5E7A58;
+  --terracotta: #8C5242;
+  --earth:      #5C3B1E;
+  --cream:      #F0E8D6;
+  --linen:      #E8DECE;
+  --sand:       #C8A97A;
+  --gold:       #9B7B3D;
+  --charcoal:   #1C1714;
+  --stone:      #7A7265;
+  --white:      #FFFFFF;
+
+  --ff-serif: 'EB Garamond', Georgia, serif;
+  --ff-sans:  'Jost', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--ff-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--linen); }
+::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 2px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 48px;
+  background: rgba(240,232,214,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(36,61,46,0.12);
+}
+.nav-brand {
+  font-family: var(--ff-serif);
+  font-size: 17px; font-weight: 500; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--forest);
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--stone); text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--forest); }
+
+/* ── LAYOUT ── */
+.section { padding: 96px 0; }
+.section.visible { opacity: 1 !important; transform: translateY(0) !important; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 64px; }
+
+.eyebrow {
+  font-family: var(--ff-sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+h2 {
+  font-family: var(--ff-serif); font-size: 46px; font-weight: 400;
+  line-height: 1.1; color: var(--charcoal); margin-bottom: 18px;
+}
+h2 em { font-style: italic; color: var(--forest); }
+/* Section-specific em overrides for dark backgrounds */
+.voice-section h2 em    { color: var(--gold); }
+.palette-section h2 em  { color: var(--sage); }
+.lead {
+  font-size: 17px; font-weight: 300; color: var(--stone);
+  max-width: 600px; line-height: 1.75; margin-bottom: 52px;
+}
+
+/* ── COVER ── */
+.cover {
+  min-height: 100vh; display: grid;
+  grid-template-columns: 52% 48%;
+  padding-top: 60px; overflow: hidden;
+}
+.cover-left {
+  background: var(--forest);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 72px; position: relative; overflow: hidden;
+}
+.cover-left::before {
+  content: ''; position: absolute; top: -100px; right: -100px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(155,123,61,0.15) 0%, transparent 68%);
+}
+.cover-left::after {
+  content: ''; position: absolute; bottom: -60px; left: -60px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(140,82,66,0.12) 0%, transparent 68%);
+}
+.cover-wordmark { position: relative; z-index: 1; }
+.wordmark-name {
+  font-family: var(--ff-serif); font-size: 72px; font-weight: 400;
+  letter-spacing: 10px; text-transform: uppercase;
+  color: var(--cream); line-height: 1; display: block;
+}
+.wordmark-rule {
+  width: 64px; height: 1px; background: var(--gold);
+  margin: 28px 0 24px;
+}
+.wordmark-sub {
+  font-family: var(--ff-sans); font-size: 10px; font-weight: 300;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--sand); display: block;
+}
+.cover-tagline {
+  margin-top: 56px; position: relative; z-index: 1;
+}
+.cover-tagline p {
+  font-family: var(--ff-serif); font-size: 22px; font-style: italic;
+  font-weight: 400; color: rgba(240,232,214,0.72); line-height: 1.55;
+  max-width: 340px;
+}
+.cover-meta {
+  margin-top: 48px; position: relative; z-index: 1;
+  display: flex; gap: 36px;
+}
+.cover-meta-item { display: flex; flex-direction: column; gap: 5px; }
+.cover-meta-label {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--sage);
+}
+.cover-meta-value {
+  font-family: var(--ff-serif); font-size: 16px; color: var(--cream); font-weight: 400;
+}
+.cover-right {
+  background: var(--charcoal);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 64px 56px; position: relative; overflow: hidden;
+}
+.cover-right::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(94,122,88,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 30% 80%, rgba(92,59,30,0.25) 0%, transparent 55%);
+}
+.cover-palette-preview {
+  position: relative; z-index: 1;
+}
+.cover-palette-label {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(240,232,214,0.62); margin-bottom: 16px;
+}
+.cover-swatches {
+  display: flex; gap: 10px;
+}
+.cover-swatch {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid rgba(240,232,214,0.15);
+}
+
+/* ── FOUNDATION ── */
+.foundation-section { background: var(--linen); }
+.pillars {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px; background: var(--sand); border-radius: 12px;
+  overflow: hidden; border: 1px solid var(--sand);
+}
+.pillar {
+  background: var(--white); padding: 40px 36px;
+}
+.pillar-num {
+  font-family: var(--ff-serif); font-size: 48px; font-weight: 400;
+  color: var(--linen); line-height: 1; margin-bottom: 16px;
+}
+.pillar h3 {
+  font-family: var(--ff-serif); font-size: 13px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--forest); margin-bottom: 12px;
+}
+.pillar p { font-size: 14px; line-height: 1.75; color: var(--stone); }
+
+.positioning-block {
+  margin-top: 52px; padding: 48px 52px;
+  background: var(--forest); border-radius: 16px;
+}
+.positioning-block p {
+  font-family: var(--ff-serif); font-size: 22px; font-style: italic;
+  font-weight: 400; color: rgba(240,232,214,0.85); line-height: 1.6;
+  max-width: 720px;
+}
+
+/* ── PALETTE ── */
+.palette-section { background: var(--charcoal); }
+.palette-section .eyebrow { color: var(--gold); }
+.palette-section h2 { color: var(--cream); }
+.palette-section .lead { color: rgba(240,232,214,0.72); }
+
+.swatches-primary {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 16px; margin-bottom: 16px;
+}
+.swatches-support {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.swatch { border-radius: 10px; overflow: hidden; cursor: pointer; }
+.swatch-color {
+  height: 120px; position: relative;
+  transition: transform .25s ease;
+}
+.swatch-color:hover { transform: scale(1.04); }
+.swatch-hex {
+  position: absolute; bottom: 10px; left: 12px;
+  font-family: var(--ff-sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 1px; color: rgba(255,255,255,0.75);
+  opacity: 0; transition: opacity .2s;
+}
+.swatch-color:hover .swatch-hex { opacity: 1; }
+.swatch-color.light .swatch-hex { color: rgba(28,23,20,0.6); }
+.swatch-info {
+  background: rgba(255,255,255,0.06);
+  padding: 14px 16px;
+}
+.swatch-name {
+  font-size: 11px; font-weight: 500; letter-spacing: 1px;
+  color: var(--cream); margin-bottom: 3px;
+}
+.swatch-role { font-size: 10px; color: rgba(240,232,214,0.62); line-height: 1.4; }
+
+.product-line-colors {
+  margin-top: 52px; padding-top: 48px;
+  border-top: 1px solid rgba(240,232,214,0.1);
+}
+.product-line-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+}
+.product-lines {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.product-line-card {
+  border-radius: 10px; padding: 28px 24px; position: relative; overflow: hidden;
+}
+.product-line-card::after {
+  content: ''; position: absolute;
+  bottom: -20px; right: -20px;
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(240,232,214,0.06);
+}
+.product-line-card h4 {
+  font-family: var(--ff-sans); font-size: 9px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(240,232,214,0.68); margin-bottom: 10px;
+}
+.product-line-card .line-name {
+  font-family: var(--ff-serif); font-size: 22px; font-weight: 400;
+  color: var(--cream); line-height: 1.2;
+}
+.product-line-card .line-detail {
+  font-size: 11px; color: rgba(240,232,214,0.62);
+  margin-top: 8px; line-height: 1.5;
+}
+
+/* ── TYPOGRAPHY ── */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.type-block {
+  background: var(--white); border-radius: 14px; padding: 44px;
+  border: 1px solid var(--linen);
+}
+.type-eyebrow {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px; display: block;
+}
+.type-display {
+  font-family: var(--ff-serif); font-size: 56px; font-weight: 400;
+  color: var(--charcoal); line-height: 1; margin-bottom: 8px;
+}
+.type-display-italic {
+  font-family: var(--ff-serif); font-size: 56px; font-weight: 400;
+  font-style: italic; color: var(--forest); line-height: 1; margin-bottom: 8px;
+}
+.type-sans-display {
+  font-family: var(--ff-sans); font-size: 32px; font-weight: 200;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--charcoal); margin-bottom: 8px;
+}
+.type-meta { font-size: 11px; color: var(--stone); letter-spacing: 1px; }
+
+.type-scale {
+  margin-top: 28px; padding-top: 28px;
+  border-top: 1px solid var(--linen);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.type-scale-row { display: flex; align-items: baseline; gap: 18px; }
+.type-size-tag {
+  font-size: 9px; letter-spacing: 1px; color: var(--stone);
+  width: 54px; flex-shrink: 0;
+}
+
+.font-pairings {
+  margin-top: 32px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.font-pair {
+  background: var(--linen); border-radius: 12px;
+  padding: 32px; text-align: center;
+}
+.pair-serif {
+  font-family: var(--ff-serif); font-size: 28px;
+  color: var(--forest); margin-bottom: 6px;
+}
+.pair-sans {
+  font-family: var(--ff-sans); font-weight: 300;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--stone);
+}
+
+/* ── LOGO ── */
+.logo-section { background: var(--linen); }
+
+.logo-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.logo-cell {
+  border-radius: 14px; padding: 52px 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+.logo-cell.on-dark  { background: var(--charcoal); }
+.logo-cell.on-forest { background: var(--forest); }
+.logo-cell.on-light { background: var(--cream); border: 1px solid var(--linen); }
+
+.logo-render { text-align: center; line-height: 1.15; }
+.lr-icon {
+  width: 48px; height: 48px; margin: 0 auto 12px;
+  position: relative;
+}
+/* Placeholder botanical icon — stylized S with leaf */
+.lr-icon svg { width: 100%; height: 100%; }
+.lr-name {
+  font-family: var(--ff-serif); font-size: 22px; font-weight: 400;
+  letter-spacing: 7px; text-transform: uppercase; display: block;
+}
+.lr-tagline {
+  font-family: var(--ff-sans); font-size: 8px; font-weight: 300;
+  letter-spacing: 4px; text-transform: uppercase; display: block;
+  margin-top: 6px;
+}
+
+.on-dark  .lr-name    { color: var(--cream); }
+.on-dark  .lr-tagline { color: var(--sand); }
+.on-forest .lr-name   { color: var(--cream); }
+.on-forest .lr-tagline{ color: var(--sage); }
+.on-light .lr-name    { color: var(--forest); }
+.on-light .lr-tagline { color: var(--stone); }
+
+.logo-cell-label {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+}
+.on-dark .logo-cell-label, .on-forest .logo-cell-label { color: rgba(240,232,214,0.55); }
+.on-light .logo-cell-label { color: var(--stone); }
+
+.logo-direction {
+  margin-top: 40px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.logo-dir-card {
+  background: var(--white); border: 1px solid var(--linen);
+  border-radius: 12px; padding: 32px;
+}
+.logo-dir-card h4 {
+  font-family: var(--ff-serif); font-size: 16px;
+  color: var(--forest); margin-bottom: 10px;
+}
+.logo-dir-card p { font-size: 13px; color: var(--stone); line-height: 1.7; }
+.logo-dir-card ul {
+  margin-top: 12px; padding-left: 16px;
+  font-size: 13px; color: var(--stone); line-height: 1.9;
+}
+.logo-placeholder-note {
+  margin-top: 24px; padding: 20px 24px;
+  background: rgba(155,123,61,0.1); border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  font-size: 13px; color: var(--earth); line-height: 1.6;
+}
+
+/* ── LOGO CONCEPT BATCHES ── */
+.concept-batch {
+  margin-top: 52px; padding-top: 48px;
+  border-top: 1px solid rgba(36,61,46,0.12);
+}
+.concept-batch-hdr { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
+.concept-batch-hdr h3 {
+  font-family: var(--ff-serif); font-size: 22px; font-weight: 400; color: var(--charcoal);
+}
+.concept-batch-hdr span {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--stone);
+}
+.logo-concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.lc-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--linen); background: var(--white); }
+.lc-stage { height: 180px; display: flex; align-items: center; justify-content: center; }
+.lc-stage.bg-cream    { background: var(--cream); }
+.lc-stage.bg-linen    { background: var(--linen); }
+.lc-stage.bg-white    { background: #fff; border-bottom: 1px solid var(--linen); }
+.lc-stage.bg-forest   { background: var(--forest); }
+.lc-stage.bg-charcoal { background: var(--charcoal); }
+.lc-meta { padding: 14px 18px 16px; border-top: 1px solid var(--linen); }
+.lc-num { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+.lc-name { font-family: var(--ff-serif); font-size: 15px; color: var(--charcoal); }
+.lc-desc { font-size: 11px; color: rgba(28,23,20,0.65); line-height: 1.6; margin-top: 4px; }
+
+/* ── PRODUCT LABELS ── */
+.labels-section { background: var(--white); }
+
+.label-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  margin-bottom: 56px; align-items: start;
+}
+.label-hierarchy {
+  background: var(--linen); border-radius: 12px; padding: 36px;
+}
+.label-hierarchy h4 {
+  font-family: var(--ff-sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.hierarchy-row {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 12px 0; border-bottom: 1px solid rgba(92,59,30,0.12);
+}
+.hierarchy-row:last-child { border-bottom: none; }
+.hierarchy-num {
+  font-family: var(--ff-serif); font-size: 18px; color: var(--sand);
+  line-height: 1; min-width: 20px;
+}
+.hierarchy-info h5 {
+  font-size: 12px; font-weight: 500; color: var(--charcoal); margin-bottom: 2px;
+}
+.hierarchy-info p { font-size: 11px; color: var(--stone); }
+
+.label-sizes-table {
+  background: var(--white); border: 1px solid var(--linen);
+  border-radius: 12px; overflow: hidden;
+}
+.label-sizes-table h4 {
+  font-family: var(--ff-sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); padding: 24px 28px 16px;
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--stone); font-weight: 500;
+  padding: 10px 18px; text-align: left;
+  border-bottom: 1px solid var(--linen);
+  background: var(--cream);
+}
+td {
+  font-size: 12px; color: var(--charcoal);
+  padding: 12px 18px; border-bottom: 1px solid var(--linen);
+  vertical-align: middle;
+}
+tr:last-child td { border-bottom: none; }
+.line-dot {
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  margin-right: 6px; vertical-align: middle;
+}
+
+/* ── LABEL MOCKUPS ── */
+.label-mockups {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px;
+  margin-top: 52px;
+}
+.label-mockup-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.label-mockup-title {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--stone);
+}
+
+/* Light label */
+.label {
+  border-radius: 4px; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(28,23,20,0.14);
+  position: relative;
+}
+.label-light {
+  background: var(--cream); border: 1px solid rgba(92,59,30,0.2);
+  width: 200px; padding: 24px 22px 20px;
+}
+.label-dark {
+  background: var(--forest); border: 1px solid rgba(155,123,61,0.3);
+  width: 200px; padding: 24px 22px 20px;
+}
+.label-terra {
+  background: var(--terracotta);
+  width: 200px; padding: 24px 22px 20px;
+}
+
+.label-brand {
+  font-family: var(--ff-sans); font-size: 8px; font-weight: 500;
+  letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 14px; display: block;
+}
+.label-light .label-brand { color: var(--stone); }
+.label-dark  .label-brand { color: var(--sage); }
+.label-terra .label-brand { color: rgba(240,232,214,0.65); }
+
+.label-product {
+  font-family: var(--ff-serif); font-size: 26px; font-weight: 400;
+  line-height: 1.1; display: block; margin-bottom: 4px;
+}
+.label-light .label-product { color: var(--charcoal); }
+.label-dark  .label-product { color: var(--cream); }
+.label-terra .label-product { color: var(--cream); }
+
+.label-type {
+  font-family: var(--ff-sans); font-size: 8px; font-weight: 400;
+  letter-spacing: 3px; text-transform: uppercase;
+  display: block; margin-bottom: 14px;
+}
+.label-light .label-type { color: var(--stone); }
+.label-dark  .label-type { color: var(--sand); }
+.label-terra .label-type { color: rgba(240,232,214,0.7); }
+
+.label-rule {
+  width: 100%; height: 1px; margin-bottom: 12px;
+}
+.label-light .label-rule { background: rgba(92,59,30,0.18); }
+.label-dark  .label-rule { background: rgba(155,123,61,0.4); }
+.label-terra .label-rule { background: rgba(240,232,214,0.25); }
+
+.label-ingredients {
+  font-family: var(--ff-sans); font-size: 9px; font-weight: 300;
+  line-height: 1.7; display: block; margin-bottom: 16px;
+}
+.label-light .label-ingredients { color: var(--stone); }
+.label-dark  .label-ingredients { color: var(--sand); }
+.label-terra .label-ingredients { color: rgba(240,232,214,0.75); }
+
+.label-footer {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-top: 4px;
+}
+.label-vol {
+  font-family: var(--ff-sans); font-size: 8px; font-weight: 300;
+  letter-spacing: 1.5px;
+}
+.label-light .label-vol { color: var(--stone); }
+.label-dark  .label-vol { color: var(--sage); }
+.label-terra .label-vol { color: rgba(240,232,214,0.82); }
+
+.label-batch {
+  font-family: var(--ff-sans); font-size: 7px; font-weight: 300;
+  letter-spacing: 0.5px;
+}
+.label-light .label-batch { color: rgba(122,114,101,0.5); }
+.label-dark  .label-batch { color: rgba(94,122,88,0.5); }
+.label-terra .label-batch { color: rgba(240,232,214,0.58); }
+
+/* Roll-on label (circular) */
+.label-circle {
+  width: 100px; height: 100px; border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(28,23,20,0.18);
+  padding: 16px;
+}
+.label-circle.lc-forest { background: var(--forest); }
+.label-circle .lc-brand {
+  font-family: var(--ff-sans); font-size: 6px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 4px;
+}
+.label-circle .lc-name {
+  font-family: var(--ff-serif); font-size: 13px;
+  color: var(--cream); line-height: 1.15;
+}
+.label-circle .lc-vol {
+  font-family: var(--ff-sans); font-size: 6px;
+  letter-spacing: 1px; color: var(--sand);
+  margin-top: 4px;
+}
+
+.label-mockup-note {
+  font-size: 11px; color: var(--stone); text-align: center;
+  max-width: 180px; line-height: 1.5;
+}
+
+/* ── BUSINESS CARDS ── */
+.cards-section { background: var(--linen); }
+
+.card-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: start;
+}
+.card-set-label {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--stone); margin-bottom: 20px;
+}
+.cards-stack {
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+/* Business card at 3.5×2 ratio (≈ 420×240px on screen) */
+.biz-card {
+  width: 420px; height: 240px; border-radius: 6px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(28,23,20,0.2);
+  flex-shrink: 0;
+}
+
+/* Card front */
+.biz-card-front { background: var(--forest); }
+.biz-card-front::before {
+  content: ''; position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(155,123,61,0.12) 0%, transparent 68%);
+}
+.biz-card-front::after {
+  content: ''; position: absolute;
+  bottom: -40px; left: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(94,122,88,0.1) 0%, transparent 68%);
+}
+.card-front-inner {
+  position: absolute; inset: 0; padding: 32px 36px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  z-index: 1;
+}
+.card-logo-line { display: flex; flex-direction: column; gap: 4px; }
+.card-name-lg {
+  font-family: var(--ff-serif); font-size: 24px; font-weight: 400;
+  letter-spacing: 7px; text-transform: uppercase; color: var(--cream);
+  line-height: 1;
+}
+.card-tagline-sm {
+  font-family: var(--ff-sans); font-size: 7px; font-weight: 300;
+  letter-spacing: 3.5px; text-transform: uppercase; color: var(--sand);
+}
+.card-rule { width: 32px; height: 1px; background: var(--gold); margin-top: 8px; }
+
+.card-person-info { }
+.card-person-name {
+  font-family: var(--ff-serif); font-size: 16px; font-weight: 400;
+  font-style: italic; color: var(--cream);
+}
+.card-person-title {
+  font-family: var(--ff-sans); font-size: 8px; font-weight: 300;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--sage);
+  margin-top: 3px;
+}
+
+/* Card back */
+.biz-card-back { background: var(--cream); border: 1px solid rgba(92,59,30,0.15); }
+.card-back-inner {
+  position: absolute; inset: 0; padding: 32px 36px;
+  display: flex; flex-direction: column; justify-content: center; gap: 0;
+  z-index: 1;
+}
+.card-contact-block { display: flex; flex-direction: column; gap: 10px; }
+.card-contact-row { display: flex; align-items: flex-start; gap: 14px; }
+.contact-label {
+  font-size: 7px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--stone); width: 48px; flex-shrink: 0; padding-top: 2px;
+}
+.contact-value {
+  font-family: var(--ff-serif); font-size: 13px; font-weight: 400;
+  color: var(--charcoal);
+}
+.card-back-rule {
+  width: 100%; height: 1px; background: rgba(92,59,30,0.12);
+  margin: 20px 0;
+}
+.card-back-brand {
+  font-family: var(--ff-sans); font-size: 7px; font-weight: 300;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--stone);
+}
+
+.card-specs {
+  background: var(--white); border: 1px solid var(--linen);
+  border-radius: 12px; padding: 32px;
+}
+.card-specs h4 {
+  font-family: var(--ff-serif); font-size: 18px;
+  color: var(--forest); margin-bottom: 20px;
+}
+.spec-row {
+  display: flex; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid var(--linen);
+  font-size: 13px;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-key { color: var(--stone); }
+.spec-val { color: var(--charcoal); font-weight: 400; }
+
+.card-variants {
+  margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.card-variant-note {
+  background: var(--linen); border-radius: 10px; padding: 20px;
+}
+.card-variant-note h5 {
+  font-family: var(--ff-sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--forest); margin-bottom: 8px;
+}
+.card-variant-note p { font-size: 12px; color: var(--stone); line-height: 1.6; }
+
+/* ── MARKETING ── */
+.marketing-section { background: var(--white); }
+.marketing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.marketing-card {
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--linen);
+}
+.marketing-card-top {
+  height: 120px; display: flex; align-items: flex-end;
+  padding: 20px; position: relative; overflow: hidden;
+}
+.marketing-card-top::before {
+  content: ''; position: absolute; inset: 0;
+  background: inherit; opacity: 0.9;
+}
+.mkt-top-label {
+  font-family: var(--ff-sans); font-size: 9px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(240,232,214,0.88); position: relative; z-index: 1;
+}
+.marketing-card-body { padding: 28px; background: var(--white); }
+.marketing-card-body h4 {
+  font-family: var(--ff-serif); font-size: 19px;
+  color: var(--charcoal); margin-bottom: 8px;
+}
+.marketing-card-body p { font-size: 13px; color: var(--stone); line-height: 1.7; }
+.marketing-card-body ul {
+  margin-top: 14px; padding-left: 0; list-style: none;
+}
+.marketing-card-body ul li {
+  font-size: 12px; color: var(--stone); padding: 5px 0;
+  border-bottom: 1px solid var(--linen); display: flex; align-items: center; gap: 8px;
+}
+.marketing-card-body ul li::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+}
+.marketing-card-body ul li:last-child { border-bottom: none; }
+
+/* ── VOICE ── */
+.voice-section { background: var(--forest); }
+.voice-section .eyebrow { color: var(--gold); }
+.voice-section h2 { color: var(--cream); }
+.voice-section .lead { color: rgba(240,232,214,0.75); }
+
+.voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.voice-card {
+  background: rgba(240,232,214,0.07); border-radius: 14px;
+  border: 1px solid rgba(240,232,214,0.14); padding: 36px;
+}
+.voice-card h3 {
+  font-family: var(--ff-serif); font-size: 20px;
+  color: var(--cream); margin-bottom: 10px;
+}
+.voice-card p { font-size: 13px; color: rgba(240,232,214,0.72); line-height: 1.7; margin-bottom: 20px; }
+.voice-example {
+  padding: 18px 20px; border-radius: 8px;
+  background: rgba(240,232,214,0.1);
+  font-family: var(--ff-serif); font-size: 17px; font-style: italic;
+  color: rgba(240,232,214,0.92); line-height: 1.55;
+}
+.voice-dont {
+  padding: 14px 18px; border-radius: 8px;
+  background: rgba(140,82,66,0.18); border: 1px solid rgba(140,82,66,0.3);
+  font-size: 12px; color: rgba(240,232,214,0.68); margin-top: 12px;
+}
+.voice-dont::before { content: '✕  '; opacity: 0.7; }
+
+.voice-words {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;
+}
+.voice-word {
+  padding: 6px 16px; border-radius: 20px;
+  background: rgba(240,232,214,0.1); border: 1px solid rgba(240,232,214,0.2);
+  font-size: 11px; color: rgba(240,232,214,0.82); letter-spacing: 1px;
+}
+
+/* ── ROADMAP ── */
+.roadmap-section { background: var(--linen); }
+.roadmap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.roadmap-card {
+  background: var(--white); border-radius: 12px; padding: 32px;
+  border: 1px solid var(--linen); position: relative;
+}
+.roadmap-card.active { border-color: var(--sage); }
+.roadmap-badge {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 12px;
+}
+.badge-active { background: rgba(94,122,88,0.15); color: var(--sage); }
+.badge-future { background: rgba(122,114,101,0.1); color: var(--stone); }
+.roadmap-card h4 {
+  font-family: var(--ff-serif); font-size: 20px;
+  color: var(--charcoal); margin-bottom: 10px;
+}
+.roadmap-card p { font-size: 13px; color: var(--stone); line-height: 1.7; }
+.roadmap-card ul {
+  margin-top: 16px; padding-left: 0; list-style: none;
+}
+.roadmap-card ul li {
+  font-size: 12px; color: var(--stone); padding: 6px 0;
+  border-bottom: 1px solid var(--linen); display: flex; align-items: center; gap: 10px;
+}
+.roadmap-card ul li:last-child { border-bottom: none; }
+.roadmap-card.active ul li::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--sage); flex-shrink: 0;
+}
+.roadmap-card:not(.active) ul li::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--stone); opacity: 0.3; flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--charcoal); padding: 48px 0;
+  text-align: center;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 64px; }
+.footer-brand {
+  font-family: var(--ff-serif); font-size: 20px; font-weight: 400;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--cream);
+  margin-bottom: 8px;
+}
+.footer-sub {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--stone);
+}
+.footer-rule { width: 40px; height: 1px; background: var(--gold); margin: 20px auto; }
+.footer-meta { font-size: 11px; color: rgba(200,169,122,0.55); }
+
+/* ── UTILS ── */
+.gap-sm  { margin-bottom: 24px; }
+.gap-md  { margin-bottom: 40px; }
+.gap-lg  { margin-bottom: 60px; }
+
+/* ── BACK LABEL ELEMENTS ── */
+.label-pairs { display: flex; flex-direction: column; gap: 44px; }
+
+.label-pair-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+
+.label-pair-col { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.label-pair-subtitle {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--stone); display: flex; align-items: center; gap: 8px;
+}
+.label-pair-subtitle::before {
+  content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: currentColor; opacity: 0.5; flex-shrink: 0;
+}
+.pair-front-tag { color: var(--gold); }
+.pair-back-tag  { color: var(--stone); }
+
+.label-pair-hdr {
+  margin-bottom: 2px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--linen);
+}
+.label-pair-hdr h4 {
+  font-family: var(--ff-serif); font-size: 18px; font-weight: 400;
+  color: var(--charcoal); margin-bottom: 2px;
+}
+.label-pair-hdr span { font-size: 11px; color: var(--stone); }
+
+/* Back label mini typography */
+.blb-mark-row {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 3px; margin-bottom: 9px;
+}
+.blb-head {
+  font-family: var(--ff-sans); font-size: 7px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 4px;
+}
+.label-light .blb-head { color: var(--gold); }
+.label-dark  .blb-head { color: var(--sage); }
+.label-terra .blb-head { color: rgba(240,232,214,0.58); }
+
+.blb-inci {
+  font-family: var(--ff-sans); font-size: 7px; font-weight: 300;
+  line-height: 1.72; display: block; font-style: italic;
+}
+.label-light .blb-inci { color: var(--stone); }
+.label-dark  .blb-inci { color: rgba(240,232,214,0.62); }
+.label-terra .blb-inci { color: rgba(240,232,214,0.62); }
+
+.blb-organic {
+  font-family: var(--ff-sans); font-size: 6.5px; font-weight: 300;
+  display: block; margin-top: 3px;
+}
+.label-light .blb-organic { color: var(--sage); }
+.label-dark  .blb-organic { color: rgba(94,122,88,0.8); }
+.label-terra .blb-organic { color: rgba(240,232,214,0.42); }
+
+.blb-text {
+  font-family: var(--ff-sans); font-size: 7.5px; font-weight: 300;
+  line-height: 1.65; display: block;
+}
+.label-light .blb-text { color: var(--charcoal); }
+.label-dark  .blb-text { color: rgba(240,232,214,0.75); }
+.label-terra .blb-text { color: rgba(240,232,214,0.75); }
+
+.blb-caution {
+  font-family: var(--ff-sans); font-size: 6.5px; font-weight: 300;
+  line-height: 1.55; font-style: italic; display: block;
+}
+.label-light .blb-caution { color: rgba(122,114,101,0.72); }
+.label-dark  .blb-caution { color: rgba(240,232,214,0.42); }
+.label-terra .blb-caution { color: rgba(240,232,214,0.42); }
+
+.blb-rule {
+  width: 100%; height: 1px; margin: 9px 0;
+}
+.label-light .blb-rule { background: rgba(92,59,30,0.1); }
+.label-dark  .blb-rule  { background: rgba(155,123,61,0.18); }
+.label-terra .blb-rule  { background: rgba(240,232,214,0.15); }
+
+.blb-footer {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 6px; margin-top: 8px;
+}
+.blb-foot-left { display: flex; flex-direction: column; gap: 2px; }
+
+.blb-site {
+  font-family: var(--ff-sans); font-size: 6.5px; font-weight: 300;
+  letter-spacing: 0.5px; display: block;
+}
+.label-light .blb-site { color: var(--stone); }
+.label-dark  .blb-site { color: rgba(240,232,214,0.38); }
+.label-terra .blb-site { color: rgba(240,232,214,0.38); }
+
+.blb-vol-sm {
+  font-family: var(--ff-sans); font-size: 7px; font-weight: 300;
+  letter-spacing: 0.5px; display: block;
+}
+.label-light .blb-vol-sm { color: var(--stone); }
+.label-dark  .blb-vol-sm { color: rgba(240,232,214,0.5); }
+.label-terra .blb-vol-sm { color: rgba(240,232,214,0.5); }
+
+.blb-barcode { display: flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0; }
+.blb-barcode-num {
+  font-family: var(--ff-sans); font-size: 5.5px; font-weight: 300; letter-spacing: 0.5px;
+}
+.label-light .blb-barcode-num { color: var(--charcoal); }
+.label-dark  .blb-barcode-num { color: rgba(240,232,214,0.5); }
+.label-terra .blb-barcode-num { color: rgba(240,232,214,0.5); }
+
+/* ── BRAND SWITCHER PANEL ── */
+#brand-switcher {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  pointer-events: none;
+}
+#brand-switcher > * { pointer-events: auto; }
+
+#sw-toggle {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--forest); border: 2px solid transparent;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.28);
+  transition: transform .2s, border-color .2s, background .4s;
+  outline: none; flex-shrink: 0;
+}
+#sw-toggle:hover { transform: scale(1.08); }
+#sw-toggle.open { border-color: var(--gold); }
+
+#sw-panel {
+  background: #fff; border: 1px solid var(--linen);
+  border-radius: 18px; padding: 22px 20px; width: 292px;
+  box-shadow: 0 12px 52px rgba(0,0,0,0.18);
+  opacity: 0; transform: translateY(10px) scale(0.96);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+#sw-panel.open { opacity: 1; transform: none; pointer-events: auto; }
+
+.sw-label {
+  font-family: var(--ff-sans); font-size: 9px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--stone);
+  display: block; margin-bottom: 10px;
+}
+.sw-divider { height: 1px; background: var(--linen); margin: 16px 0; }
+
+.sw-pal-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border-radius: 10px;
+  border: 1.5px solid var(--linen); cursor: pointer;
+  transition: border-color .18s, background .18s;
+  margin-bottom: 8px; user-select: none;
+}
+.sw-pal-card:last-child { margin-bottom: 0; }
+.sw-pal-card:hover { border-color: var(--gold); }
+.sw-pal-card.active { border-color: var(--forest); background: rgba(0,0,0,0.025); }
+.sw-pal-dots { display: flex; gap: 4px; flex-shrink: 0; }
+.sw-pal-dot { width: 13px; height: 13px; border-radius: 50%; border: 1px solid transparent; }
+.sw-pal-dot.sw-light { border-color: rgba(0,0,0,0.12); }
+.sw-pal-info { flex: 1; min-width: 0; line-height: 1.35; }
+.sw-pal-name { font-size: 12px; color: var(--charcoal); display: block; }
+.sw-pal-sub  { font-size: 10px; color: var(--stone); }
+.sw-pal-check { color: var(--gold); font-size: 14px; line-height: 1; opacity: 0; transition: opacity .15s; }
+.sw-pal-card.active .sw-pal-check { opacity: 1; }
+
+.sw-icon-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.sw-icon-btn {
+  border: 1.5px solid var(--linen); border-radius: 9px;
+  background: none; cursor: pointer; padding: 10px;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .18s, background .18s;
+  aspect-ratio: 1; position: relative;
+}
+.sw-icon-btn:hover { border-color: var(--gold); background: rgba(0,0,0,0.02); }
+.sw-icon-btn.active { border-color: var(--forest); background: rgba(0,0,0,0.025); }
+.sw-icon-btn svg { display: block; max-width: 100%; max-height: 100%; }
+.sw-icon-tip {
+  position: absolute; bottom: calc(100% + 6px); left: 50%;
+  transform: translateX(-50%); white-space: nowrap;
+  background: var(--charcoal); color: #fff;
+  font-size: 9px; letter-spacing: 0.5px; padding: 4px 8px; border-radius: 4px;
+  pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 10;
+}
+.sw-icon-btn:hover .sw-icon-tip { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Salutaris</span>
+  <ul class="nav-links">
+    <li><a href="#foundation">Foundation</a></li>
+    <li><a href="#palette">Palette</a></li>
+    <li><a href="#typography">Typography</a></li>
+    <li><a href="#logo">Logo</a></li>
+    <li><a href="#labels">Labels</a></li>
+    <li><a href="#cards">Business Cards</a></li>
+    <li><a href="#marketing">Marketing</a></li>
+    <li><a href="#voice">Voice</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-left">
+    <div class="cover-wordmark">
+      <span class="wordmark-name">Salutaris</span>
+      <div class="wordmark-rule"></div>
+      <span class="wordmark-sub">Custom Organic Oils &nbsp;·&nbsp; Est. 2026</span>
+    </div>
+    <div class="cover-tagline">
+      <p>Pure by nature.<br>Precise by design.</p>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Document</span>
+        <span class="cover-meta-value">Brand Identity v1</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Prepared</span>
+        <span class="cover-meta-value">July 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Status</span>
+        <span class="cover-meta-value">In Progress</span>
+      </div>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div class="cover-palette-preview">
+      <div class="cover-palette-label">Brand Palette Preview</div>
+      <div class="cover-swatches">
+        <div class="cover-swatch" style="background:#243D2E"></div>
+        <div class="cover-swatch" style="background:#5E7A58"></div>
+        <div class="cover-swatch" style="background:#8C5242"></div>
+        <div class="cover-swatch" style="background:#9B7B3D"></div>
+        <div class="cover-swatch" style="background:#5C3B1E"></div>
+        <div class="cover-swatch" style="background:#F0E8D6"></div>
+        <div class="cover-swatch" style="background:#C8A97A"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDATION -->
+<section class="section foundation-section" id="foundation">
+  <div class="container">
+    <div class="eyebrow">Brand Foundation</div>
+    <h2>Rooted in <em>purpose.</em></h2>
+    <p class="lead">Salutaris — from the Latin <em>salutaris</em>, meaning healthful, beneficial, curative. Every product is a considered formulation. Every consultation, a craft.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Purity</h3>
+        <p>Pre-approved organic carrier and essential oils only. No fillers, no shortcuts. Every ingredient earns its place in the formula.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Precision</h3>
+        <p>Custom blends formulated for targeted application — skin, hair, or aromatic. The right oil for the right purpose, calibrated to the individual.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>Craft</h3>
+        <p>Small-batch, hands-on production. Whether a bespoke personal blend or a limited product run, the standard never changes.</p>
+      </div>
+    </div>
+
+    <div class="positioning-block gap-md" style="margin-top:40px;">
+      <p>"Salutaris exists for those who understand that what goes <em>on</em> the body matters as much as what goes <em>in</em> it. We don't cut corners — we blend with intent."</p>
+    </div>
+  </div>
+</section>
+
+<!-- PALETTE -->
+<section class="section palette-section" id="palette">
+  <div class="container">
+    <div class="eyebrow">Color Palette</div>
+    <h2>Deep. <em>Earthy.</em> Alive.</h2>
+    <p class="lead">Rooted in nature — forest floors, warm clay, aged botanicals, and gold-touched amber. The palette carries weight without heaviness, and warmth without sweetness.</p>
+
+    <div class="swatches-primary gap-sm" id="swatches-primary">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#243D2E"><span class="swatch-hex">#243D2E</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Forest</div>
+          <div class="swatch-role">Primary · Brand anchor</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5E7A58"><span class="swatch-hex">#5E7A58</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sage</div>
+          <div class="swatch-role">Secondary green · supports Forest</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#8C5242"><span class="swatch-hex">#8C5242</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Terracotta</div>
+          <div class="swatch-role">Earthy accent · aromatic line</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#9B7B3D"><span class="swatch-hex">#9B7B3D</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Antique Gold</div>
+          <div class="swatch-role">Premium accent · rules &amp; details</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5C3B1E"><span class="swatch-hex">#5C3B1E</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Earth</div>
+          <div class="swatch-role">Rich brown · hair line</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="swatches-support" id="swatches-support">
+      <div class="swatch">
+        <div class="swatch-color light" style="background:#F0E8D6"><span class="swatch-hex" style="color:rgba(28,23,20,0.55)">#F0E8D6</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-role">Primary background &amp; label base</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color light" style="background:#E8DECE"><span class="swatch-hex" style="color:rgba(28,23,20,0.55)">#E8DECE</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Linen</div>
+          <div class="swatch-role">Secondary background</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color light" style="background:#C8A97A"><span class="swatch-hex" style="color:rgba(28,23,20,0.55)">#C8A97A</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sand</div>
+          <div class="swatch-role">Warm neutral · supporting text</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#7A7265"><span class="swatch-hex">#7A7265</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Stone</div>
+          <div class="swatch-role">Muted neutral · body text</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1C1714"><span class="swatch-hex">#1C1714</span></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Charcoal</div>
+          <div class="swatch-role">Near-black · primary text</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product line color coding -->
+    <div class="product-line-colors">
+      <div class="product-line-label">Product Line Color Coding</div>
+      <div class="product-lines">
+        <div class="product-line-card" style="background:#243D2E">
+          <h4>Line 01</h4>
+          <div class="line-name">Skin<br>Collection</div>
+          <div class="line-detail">Forest green labels<br>#243D2E base</div>
+        </div>
+        <div class="product-line-card" style="background:#5C3B1E">
+          <h4>Line 02</h4>
+          <div class="line-name">Hair<br>Collection</div>
+          <div class="line-detail">Earth brown labels<br>#5C3B1E base</div>
+        </div>
+        <div class="product-line-card" style="background:#8C5242">
+          <h4>Line 03</h4>
+          <div class="line-name">Aromatic &amp;<br>Diffuser</div>
+          <div class="line-detail">Terracotta labels<br>#8C5242 base</div>
+        </div>
+        <div class="product-line-card" style="background:#1C1714; border: 1px solid rgba(155,123,61,0.3);">
+          <h4>Line 04</h4>
+          <div class="line-name">Bespoke &amp;<br>Custom</div>
+          <div class="line-detail">Charcoal + gold labels<br>#1C1714 / #9B7B3D</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section" id="typography">
+  <div class="container">
+    <div class="eyebrow">Typography</div>
+    <h2>Two voices.<br><em>One language.</em></h2>
+    <p class="lead">EB Garamond carries the warmth and depth of botanical tradition. Jost brings clean modern precision to labels and functional copy. Together they hold the tension between heritage and contemporary luxury.</p>
+
+    <div class="type-grid gap-lg">
+      <div class="type-block">
+        <span class="type-eyebrow">Primary · Display &amp; Headlines</span>
+        <div class="type-display">Salutaris</div>
+        <div class="type-display-italic">Pure by nature.</div>
+        <div class="type-meta">EB Garamond · 400 / Italic 400 · Google Fonts</div>
+        <div class="type-scale">
+          <div class="type-scale-row">
+            <span class="type-size-tag">72px</span>
+            <span style="font-family:var(--ff-serif);font-size:36px;color:var(--charcoal)">Brand Display</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-size-tag">48px</span>
+            <span style="font-family:var(--ff-serif);font-size:28px;color:var(--charcoal)">Section Headline</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-size-tag">28px</span>
+            <span style="font-family:var(--ff-serif);font-size:20px;color:var(--charcoal)">Sub-headline</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-size-tag">20px</span>
+            <span style="font-family:var(--ff-serif);font-size:16px;font-style:italic;color:var(--stone)">Pull quote or accent text in italic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="type-block">
+        <span class="type-eyebrow">Secondary · Labels, Body &amp; Functional</span>
+        <div class="type-sans-display">Organic Oils</div>
+        <div class="type-meta">Jost · 200 / 300 / 400 / 500 · Google Fonts</div>
+        <div class="type-scale">
+          <div class="type-scale-row">
+            <span class="type-size-tag">500</span>
+            <span style="font-family:var(--ff-sans);font-size:15px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--charcoal)">LABEL HEADERS</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-size-tag">300</span>
+            <span style="font-family:var(--ff-sans);font-size:14px;font-weight:300;color:var(--charcoal)">Body and descriptive text</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-size-tag">200</span>
+            <span style="font-family:var(--ff-sans);font-size:12px;font-weight:200;letter-spacing:4px;text-transform:uppercase;color:var(--stone)">EYEBROW &amp; CATEGORY</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-size-tag">300</span>
+            <span style="font-family:var(--ff-sans);font-size:10px;font-weight:300;letter-spacing:2px;color:var(--stone)">Ingredient lists · volume · batch codes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-pairings">
+      <div class="font-pair">
+        <div class="pair-serif">Rosehip Facial Oil</div>
+        <div class="pair-sans" style="margin-top:4px">Skin Collection · 30ml</div>
+      </div>
+      <div class="font-pair">
+        <div class="pair-serif" style="font-style:italic">Intentionally crafted.</div>
+        <div class="pair-sans" style="margin-top:4px">Salutaris Custom Organic Oils</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="section logo-section" id="logo">
+  <div class="container">
+    <div class="eyebrow">Logo System</div>
+    <h2>The <em>mark.</em></h2>
+    <p class="lead">A geometric botanical tree — triangle canopy, radiating branch lines, two-leg root base. Developed across two concept batches exploring weight, treatment, and lockup. Final selection in progress.</p>
+
+    <!-- FEATURED COLOR TREATMENTS -->
+    <div class="logo-grid gap-md">
+      <div class="logo-cell on-dark" id="logo-cell-dark">
+        <div class="logo-render">
+          <svg viewBox="0 0 240 240" width="110" height="110" fill="none" style="margin:0 auto 14px;display:block;">
+            <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+            <line x1="94"  y1="64"  x2="40"  y2="20"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="70"  y1="106" x2="12"  y2="90"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="146" y1="64"  x2="200" y2="20"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="170" y1="106" x2="228" y2="90"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="88"  y1="170" x2="88"  y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="lr-name" style="font-size:18px;letter-spacing:6px">SALUTARIS</span>
+          <span class="lr-tagline">Custom Organic Oils</span>
+        </div>
+        <span class="logo-cell-label">On Charcoal</span>
+      </div>
+      <div class="logo-cell on-forest" id="logo-cell-forest">
+        <div class="logo-render">
+          <svg viewBox="0 0 240 240" width="110" height="110" fill="none" style="margin:0 auto 14px;display:block;">
+            <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+            <line x1="94"  y1="64"  x2="40"  y2="20"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="70"  y1="106" x2="12"  y2="90"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="146" y1="64"  x2="200" y2="20"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="170" y1="106" x2="228" y2="90"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="88"  y1="170" x2="88"  y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="lr-name" style="font-size:18px;letter-spacing:6px">SALUTARIS</span>
+          <span class="lr-tagline">Custom Organic Oils</span>
+        </div>
+        <span class="logo-cell-label">On Forest</span>
+      </div>
+      <div class="logo-cell on-light" id="logo-cell-light">
+        <div class="logo-render">
+          <svg viewBox="0 0 240 240" width="110" height="110" fill="none" style="margin:0 auto 14px;display:block;">
+            <polygon points="120,18 33,170 207,170" stroke="#243D2E" stroke-width="9" stroke-linejoin="round" fill="none"/>
+            <line x1="94"  y1="64"  x2="40"  y2="20"  stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+            <line x1="70"  y1="106" x2="12"  y2="90"  stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+            <line x1="146" y1="64"  x2="200" y2="20"  stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+            <line x1="170" y1="106" x2="228" y2="90"  stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+            <line x1="88"  y1="170" x2="88"  y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+            <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="lr-name" style="font-size:18px;letter-spacing:6px">SALUTARIS</span>
+          <span class="lr-tagline">Custom Organic Oils</span>
+        </div>
+        <span class="logo-cell-label">On Cream</span>
+      </div>
+    </div>
+
+    <div class="logo-direction">
+      <div class="logo-dir-card">
+        <h4>Mark</h4>
+        <p>A geometric botanical tree: triangle canopy with radiating branch lines (2 per side), two-leg root base. Reads as both plant and mountain — organic and grounded. Linework only; no fills in the primary mark.</p>
+        <ul>
+          <li>Forest green (#243D2E) on light backgrounds</li>
+          <li>Cream (#F0E8D6) on Forest or Charcoal</li>
+          <li>Branches in Gold (#9B7B3D) for two-tone treatment</li>
+          <li>Scales cleanly from 10mm label to signage</li>
+        </ul>
+      </div>
+      <div class="logo-dir-card">
+        <h4>Wordmark</h4>
+        <p>SALUTARIS in wide-tracked EB Garamond (400), with "Custom Organic Oils" in Jost Light below, separated by a hairline gold rule. Used in stacked (labels/packaging) and horizontal (letterhead/cards) lockups.</p>
+        <ul>
+          <li>EB Garamond 400, letter-spacing 8–10px</li>
+          <li>Jost 200–300 for subtitle, letter-spacing 4px</li>
+          <li>Tagline: <em>Pure by nature. Precise by design.</em></li>
+          <li>Gold rule (#9B7B3D) separates name from subtitle</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BATCH 1 -->
+    <div class="concept-batch">
+      <div class="concept-batch-hdr">
+        <h3>Batch 1 — Bold Geometry</h3>
+        <span>6 concepts · original mark weight</span>
+      </div>
+      <div class="logo-concept-grid">
+
+        <div class="lc-card">
+          <div class="lc-stage bg-cream">
+            <svg viewBox="0 0 240 240" width="100" height="100" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#243D2E" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v1 · 01</div>
+            <div class="lc-name">Original — Forest</div>
+            <div class="lc-desc">Pure Forest green, uniform stroke. The baseline mark.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-linen">
+            <svg viewBox="0 0 240 240" width="100" height="100" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#243D2E" stroke-width="9.5" stroke-linejoin="round" fill="none"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#243D2E" stroke-width="9.5" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="9.5" stroke-linecap="round"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#9B7B3D" stroke-width="7" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#9B7B3D" stroke-width="7" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#9B7B3D" stroke-width="7" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#9B7B3D" stroke-width="7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v1 · 02</div>
+            <div class="lc-name">Two-Tone</div>
+            <div class="lc-desc">Forest structure, Gold branches. Hierarchy through color.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-linen">
+            <svg viewBox="0 0 240 240" width="100" height="100" fill="none">
+              <polygon points="120,18 33,170 207,170" fill="#243D2E" stroke="#243D2E" stroke-width="4" stroke-linejoin="round"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v1 · 03</div>
+            <div class="lc-name">Filled — Bold Block</div>
+            <div class="lc-desc">Solid triangle, Gold branches. Bold, emboss-ready.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-cream">
+            <svg viewBox="0 0 280 280" width="100" height="100" fill="none">
+              <circle cx="140" cy="132" r="124" stroke="#243D2E" stroke-width="1.5"/>
+              <circle cx="140" cy="132" r="116" stroke="#9B7B3D" stroke-width="0.75"/>
+              <g transform="translate(44,36) scale(0.80)">
+                <polygon points="120,18 33,170 207,170" stroke="#243D2E" stroke-width="11" stroke-linejoin="round" fill="none"/>
+                <line x1="94" y1="64" x2="40" y2="20" stroke="#243D2E" stroke-width="11" stroke-linecap="round"/>
+                <line x1="70" y1="106" x2="12" y2="90" stroke="#243D2E" stroke-width="11" stroke-linecap="round"/>
+                <line x1="146" y1="64" x2="200" y2="20" stroke="#243D2E" stroke-width="11" stroke-linecap="round"/>
+                <line x1="170" y1="106" x2="228" y2="90" stroke="#243D2E" stroke-width="11" stroke-linecap="round"/>
+                <line x1="88" y1="170" x2="88" y2="222" stroke="#243D2E" stroke-width="11" stroke-linecap="round"/>
+                <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="11" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v1 · 04</div>
+            <div class="lc-name">Seal</div>
+            <div class="lc-desc">Mark in double-ring. Wax seals, jar lids, label centers.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-forest">
+            <svg viewBox="0 0 360 400" width="90" height="100" fill="none">
+              <g transform="translate(60,8)">
+                <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+                <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+                <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+                <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+                <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+                <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              </g>
+              <line x1="140" y1="250" x2="220" y2="250" stroke="#9B7B3D" stroke-width="0.75"/>
+              <text x="180" y="282" font-family="EB Garamond,Georgia,serif" font-size="26" letter-spacing="8" fill="#F0E8D6" text-anchor="middle">SALUTARIS</text>
+              <line x1="140" y1="296" x2="220" y2="296" stroke="#9B7B3D" stroke-width="0.75"/>
+              <text x="180" y="315" font-family="Jost,sans-serif" font-size="8" letter-spacing="3.5" fill="#C8A97A" text-anchor="middle">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v1 · 05</div>
+            <div class="lc-name">Stacked Wordmark</div>
+            <div class="lc-desc">Mark + name centered. Primary packaging lockup.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-charcoal">
+            <svg viewBox="0 0 640 220" width="160" height="55" fill="none">
+              <g transform="translate(20,6) scale(0.90)">
+                <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="10" stroke-linejoin="round" fill="none"/>
+                <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="8" stroke-linecap="round"/>
+                <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="8" stroke-linecap="round"/>
+                <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="8" stroke-linecap="round"/>
+                <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="8" stroke-linecap="round"/>
+                <line x1="88" y1="170" x2="88" y2="206" stroke="#F0E8D6" stroke-width="10" stroke-linecap="round"/>
+                <line x1="152" y1="170" x2="152" y2="206" stroke="#F0E8D6" stroke-width="10" stroke-linecap="round"/>
+              </g>
+              <line x1="240" y1="38" x2="240" y2="182" stroke="rgba(155,123,61,0.5)" stroke-width="0.75"/>
+              <text x="268" y="96" font-family="EB Garamond,Georgia,serif" font-size="44" letter-spacing="10" fill="#F0E8D6">SALUTARIS</text>
+              <line x1="268" y1="113" x2="608" y2="113" stroke="#9B7B3D" stroke-width="0.75"/>
+              <text x="268" y="134" font-family="Jost,sans-serif" font-size="10" letter-spacing="4" fill="#7A7265">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v1 · 06</div>
+            <div class="lc-name">Horizontal Wordmark</div>
+            <div class="lc-desc">Mark left, name right. Letterhead, cards, invoices.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BATCH 2 -->
+    <div class="concept-batch">
+      <div class="concept-batch-hdr">
+        <h3>Batch 2 — Inspired</h3>
+        <span>6 concepts · refined linework · landscape-informed</span>
+      </div>
+      <div class="logo-concept-grid">
+
+        <div class="lc-card">
+          <div class="lc-stage bg-white">
+            <svg viewBox="0 0 260 260" width="100" height="100" fill="none">
+              <polygon points="130,14 36,182 224,182" stroke="#243D2E" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+              <line x1="111" y1="48" x2="64" y2="8" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="91" y1="85" x2="25" y2="66" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="70" y1="122" x2="8" y2="104" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="149" y1="48" x2="196" y2="8" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="170" y1="85" x2="236" y2="66" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="190" y1="122" x2="252" y2="104" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="100" y1="182" x2="100" y2="244" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="160" y1="182" x2="160" y2="244" stroke="#243D2E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v2 · 01</div>
+            <div class="lc-name">Hairline Botanical</div>
+            <div class="lc-desc">1.8px stroke, 3 branches per side. Apothecary illustration weight.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-forest">
+            <svg viewBox="0 0 300 260" width="116" height="100" fill="none">
+              <polygon points="150,92 55,195 245,195" stroke="#5E7A58" stroke-width="5" stroke-linejoin="round" fill="none" opacity="0.55"/>
+              <polygon points="150,10 25,195 275,195" stroke="#F0E8D6" stroke-width="7.5" stroke-linejoin="round" fill="none"/>
+              <line x1="119" y1="56" x2="52" y2="8" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+              <line x1="88" y1="103" x2="10" y2="83" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+              <line x1="181" y1="56" x2="248" y2="8" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+              <line x1="212" y1="103" x2="290" y2="83" stroke="#C8A97A" stroke-width="7.5" stroke-linecap="round"/>
+              <polyline points="18,195 52,170 80,187 114,158 150,174 186,155 220,180 250,166 282,195" stroke="#5E7A58" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v2 · 02</div>
+            <div class="lc-name">Mountain Ridge</div>
+            <div class="lc-desc">Layered peaks, sage ridge baseline. Mountain landscape mark.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-white">
+            <svg viewBox="0 0 240 240" width="100" height="100" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#7A7265" stroke-width="2.5" stroke-linejoin="miter" stroke-miterlimit="10" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#7A7265" stroke-width="2.5" stroke-linecap="square"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#7A7265" stroke-width="2.5" stroke-linecap="square"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#7A7265" stroke-width="2.5" stroke-linecap="square"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#7A7265" stroke-width="2.5" stroke-linecap="square"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#9B7B3D" stroke-width="1.5" stroke-linecap="square"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#9B7B3D" stroke-width="1.5" stroke-linecap="square"/>
+              <line x1="66" y1="222" x2="174" y2="222" stroke="#9B7B3D" stroke-width="0.75"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v2 · 03</div>
+            <div class="lc-name">Luxury Stone</div>
+            <div class="lc-desc">Stone grey, square caps. For marble, white paper, laser etch.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-forest">
+            <svg viewBox="0 0 320 390" width="82" height="100" fill="none">
+              <g transform="translate(30,8)">
+                <polygon points="130,14 36,182 224,182" stroke="#F0E8D6" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                <line x1="111" y1="48" x2="64" y2="8" stroke="#C8A97A" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="91" y1="85" x2="25" y2="66" stroke="#C8A97A" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="70" y1="122" x2="8" y2="104" stroke="#C8A97A" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="149" y1="48" x2="196" y2="8" stroke="#C8A97A" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="170" y1="85" x2="236" y2="66" stroke="#C8A97A" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="190" y1="122" x2="252" y2="104" stroke="#C8A97A" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="100" y1="182" x2="100" y2="244" stroke="#F0E8D6" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="160" y1="182" x2="160" y2="244" stroke="#F0E8D6" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+              <line x1="128" y1="264" x2="192" y2="264" stroke="#9B7B3D" stroke-width="0.75"/>
+              <text x="160" y="294" font-family="EB Garamond,Georgia,serif" font-size="24" letter-spacing="8" fill="#F0E8D6" text-anchor="middle">SALUTARIS</text>
+              <line x1="128" y1="308" x2="192" y2="308" stroke="#9B7B3D" stroke-width="0.75"/>
+              <text x="160" y="326" font-family="Jost,sans-serif" font-size="7.5" letter-spacing="4" fill="#C8A97A" text-anchor="middle">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v2 · 04</div>
+            <div class="lc-name">Stacked — Refined</div>
+            <div class="lc-desc">Hairline mark + wordmark. Tighter, more elegant proportions.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-cream">
+            <svg viewBox="0 0 580 190" width="160" height="52" fill="none">
+              <g transform="translate(14,12) scale(0.63)">
+                <polygon points="130,14 36,182 224,182" stroke="#243D2E" stroke-width="2.8" stroke-linejoin="round" fill="none"/>
+                <line x1="111" y1="48" x2="64" y2="8" stroke="#9B7B3D" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="91" y1="85" x2="25" y2="66" stroke="#9B7B3D" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="70" y1="122" x2="8" y2="104" stroke="#9B7B3D" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="149" y1="48" x2="196" y2="8" stroke="#9B7B3D" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="170" y1="85" x2="236" y2="66" stroke="#9B7B3D" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="190" y1="122" x2="252" y2="104" stroke="#9B7B3D" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="100" y1="182" x2="100" y2="236" stroke="#243D2E" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="160" y1="182" x2="160" y2="236" stroke="#243D2E" stroke-width="2.8" stroke-linecap="round"/>
+              </g>
+              <line x1="168" y1="30" x2="168" y2="160" stroke="rgba(155,123,61,0.4)" stroke-width="0.6"/>
+              <text x="192" y="84" font-family="EB Garamond,Georgia,serif" font-size="40" letter-spacing="9" fill="#243D2E">SALUTARIS</text>
+              <line x1="192" y1="100" x2="558" y2="100" stroke="#9B7B3D" stroke-width="0.6"/>
+              <text x="192" y="122" font-family="Jost,sans-serif" font-size="9" letter-spacing="4" fill="#7A7265">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v2 · 05</div>
+            <div class="lc-name">Horizontal — Refined</div>
+            <div class="lc-desc">Hairline mark + horizontal lockup. Letterhead, cards, invoices.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-charcoal">
+            <svg viewBox="0 0 340 400" width="85" height="100" fill="none">
+              <defs>
+                <radialGradient id="bgGradBD" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#2E4F3C"/>
+                  <stop offset="100%" stop-color="#1C1714"/>
+                </radialGradient>
+              </defs>
+              <rect width="340" height="400" fill="url(#bgGradBD)" rx="4"/>
+              <g transform="translate(50,22) scale(0.92)">
+                <polygon points="130,14 36,182 224,182" stroke="#F0E8D6" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                <line x1="111" y1="48" x2="64" y2="8" stroke="#9B7B3D" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="91" y1="85" x2="25" y2="66" stroke="#9B7B3D" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="70" y1="122" x2="8" y2="104" stroke="#9B7B3D" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="149" y1="48" x2="196" y2="8" stroke="#9B7B3D" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="170" y1="85" x2="236" y2="66" stroke="#9B7B3D" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="190" y1="122" x2="252" y2="104" stroke="#9B7B3D" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="100" y1="182" x2="100" y2="244" stroke="#F0E8D6" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="160" y1="182" x2="160" y2="244" stroke="#F0E8D6" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+              <line x1="138" y1="270" x2="202" y2="270" stroke="#9B7B3D" stroke-width="0.75"/>
+              <text x="170" y="300" font-family="EB Garamond,Georgia,serif" font-size="24" letter-spacing="8" fill="#F0E8D6" text-anchor="middle">SALUTARIS</text>
+              <line x1="138" y1="314" x2="202" y2="314" stroke="#9B7B3D" stroke-width="0.75"/>
+              <text x="170" y="332" font-family="Jost,sans-serif" font-size="7.5" letter-spacing="4" fill="#C8A97A" text-anchor="middle">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v2 · 06</div>
+            <div class="lc-name">Premium Inverted</div>
+            <div class="lc-desc">Cream/Gold on dark gradient. Bespoke line, gift packaging.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BATCH 3 -->
+    <div class="concept-batch">
+      <div class="concept-batch-hdr">
+        <h3>Batch 3 — Midnight Botanical</h3>
+        <span>6 concepts · purple &amp; indigo palette · v1 + v2 hybrid geometry</span>
+      </div>
+      <div class="logo-concept-grid">
+
+        <div class="lc-card">
+          <div class="lc-stage" style="background:#F2EEF8">
+            <svg viewBox="0 0 260 260" width="100" height="100" fill="none">
+              <polygon points="130,14 36,182 224,182" stroke="#1E2240" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+              <line x1="111" y1="48" x2="64" y2="8" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="91" y1="85" x2="25" y2="66" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="70" y1="122" x2="8" y2="104" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="149" y1="48" x2="196" y2="8" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="170" y1="85" x2="236" y2="66" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="190" y1="122" x2="252" y2="104" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="100" y1="182" x2="100" y2="244" stroke="#1E2240" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="160" y1="182" x2="160" y2="244" stroke="#1E2240" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v3 · 01</div>
+            <div class="lc-name">Midnight Hairline</div>
+            <div class="lc-desc">v2 hairline geometry in Midnight + Amethyst. Label &amp; fine print weight.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage" style="background:#E4DFF0">
+            <svg viewBox="0 0 240 240" width="100" height="100" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#1E2240" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94" y1="64" x2="40" y2="20" stroke="#8E6AAE" stroke-width="7" stroke-linecap="round"/>
+              <line x1="70" y1="106" x2="12" y2="90" stroke="#8E6AAE" stroke-width="7" stroke-linecap="round"/>
+              <line x1="146" y1="64" x2="200" y2="20" stroke="#8E6AAE" stroke-width="7" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90" stroke="#8E6AAE" stroke-width="7" stroke-linecap="round"/>
+              <line x1="88" y1="170" x2="88" y2="222" stroke="#1E2240" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#1E2240" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v3 · 02</div>
+            <div class="lc-name">Bold Geometric</div>
+            <div class="lc-desc">v1 bold 2-branch geometry transposed to Midnight + Amethyst.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage" style="background:#F2EEF8">
+            <svg viewBox="0 0 280 280" width="100" height="100" fill="none">
+              <circle cx="140" cy="132" r="126" stroke="#1E2240" stroke-width="1.8"/>
+              <circle cx="140" cy="132" r="118" stroke="#8E6AAE" stroke-width="0.75"/>
+              <g transform="translate(40,31) scale(0.77)">
+                <polygon points="130,14 36,182 224,182" stroke="#1E2240" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+                <line x1="111" y1="48" x2="64" y2="8" stroke="#8E6AAE" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="91" y1="85" x2="25" y2="66" stroke="#8E6AAE" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="70" y1="122" x2="8" y2="104" stroke="#8E6AAE" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="149" y1="48" x2="196" y2="8" stroke="#8E6AAE" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="170" y1="85" x2="236" y2="66" stroke="#8E6AAE" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="190" y1="122" x2="252" y2="104" stroke="#8E6AAE" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="100" y1="182" x2="100" y2="226" stroke="#1E2240" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="160" y1="182" x2="160" y2="226" stroke="#1E2240" stroke-width="2.4" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v3 · 03</div>
+            <div class="lc-name">Hybrid Seal</div>
+            <div class="lc-desc">v1 seal ring format with v2 hairline mark inside. Emboss &amp; stamp use.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-charcoal">
+            <svg viewBox="0 0 320 390" width="82" height="100" fill="none">
+              <rect width="320" height="390" fill="#1E2240" rx="3"/>
+              <g transform="translate(30,8) scale(1.0)">
+                <polygon points="130,14 36,182 224,182" stroke="#F2EEF8" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                <line x1="111" y1="48" x2="64" y2="8" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="91" y1="85" x2="25" y2="66" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="70" y1="122" x2="8" y2="104" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="149" y1="48" x2="196" y2="8" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="170" y1="85" x2="236" y2="66" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="190" y1="122" x2="252" y2="104" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="100" y1="182" x2="100" y2="244" stroke="#F2EEF8" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="160" y1="182" x2="160" y2="244" stroke="#F2EEF8" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+              <line x1="128" y1="264" x2="192" y2="264" stroke="#8E6AAE" stroke-width="0.75"/>
+              <text x="160" y="294" font-family="EB Garamond,Georgia,serif" font-size="22" letter-spacing="6" fill="#F2EEF8" text-anchor="middle">SALUTARIS</text>
+              <line x1="128" y1="308" x2="192" y2="308" stroke="#8E6AAE" stroke-width="0.75"/>
+              <text x="160" y="326" font-family="Jost,sans-serif" font-size="7" letter-spacing="3.5" fill="#BDB8D8" text-anchor="middle">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v3 · 04</div>
+            <div class="lc-name">Stacked — Midnight</div>
+            <div class="lc-desc">Full stacked lockup on Midnight background. Dark label format.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage" style="background:#F2EEF8">
+            <svg viewBox="0 0 580 190" width="160" height="52" fill="none">
+              <g transform="translate(14,12) scale(0.63)">
+                <polygon points="130,14 36,182 224,182" stroke="#1E2240" stroke-width="4.5" stroke-linejoin="round" fill="none"/>
+                <line x1="111" y1="48" x2="64" y2="8" stroke="#8E6AAE" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="91" y1="85" x2="25" y2="66" stroke="#8E6AAE" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="70" y1="122" x2="8" y2="104" stroke="#8E6AAE" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="149" y1="48" x2="196" y2="8" stroke="#8E6AAE" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="170" y1="85" x2="236" y2="66" stroke="#8E6AAE" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="190" y1="122" x2="252" y2="104" stroke="#8E6AAE" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="100" y1="182" x2="100" y2="236" stroke="#1E2240" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="160" y1="182" x2="160" y2="236" stroke="#1E2240" stroke-width="4.5" stroke-linecap="round"/>
+              </g>
+              <line x1="168" y1="28" x2="168" y2="162" stroke="#8E6AAE" stroke-width="0.6" opacity="0.45"/>
+              <text x="190" y="82" font-family="EB Garamond,Georgia,serif" font-size="36" letter-spacing="8" fill="#1E2240">SALUTARIS</text>
+              <line x1="190" y1="97" x2="560" y2="97" stroke="#8E6AAE" stroke-width="0.6"/>
+              <text x="190" y="116" font-family="Jost,sans-serif" font-size="8" letter-spacing="3.5" fill="#6E6B85">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v3 · 05</div>
+            <div class="lc-name">Horizontal — Pearl</div>
+            <div class="lc-desc">Horizontal lockup on Pearl. Hybrid 4.5px stroke — between v1 bold and v2 hairline.</div>
+          </div>
+        </div>
+
+        <div class="lc-card">
+          <div class="lc-stage bg-charcoal">
+            <svg viewBox="0 0 340 400" width="85" height="100" fill="none">
+              <defs>
+                <radialGradient id="plumG3" cx="50%" cy="38%" r="62%">
+                  <stop offset="0%" stop-color="#4A2D5A"/>
+                  <stop offset="100%" stop-color="#171520"/>
+                </radialGradient>
+              </defs>
+              <rect width="340" height="400" fill="url(#plumG3)" rx="3"/>
+              <g transform="translate(50,22) scale(0.92)">
+                <polygon points="130,14 36,182 224,182" stroke="#F2EEF8" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                <line x1="111" y1="48" x2="64" y2="8" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="91" y1="85" x2="25" y2="66" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="70" y1="122" x2="8" y2="104" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="149" y1="48" x2="196" y2="8" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="170" y1="85" x2="236" y2="66" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="190" y1="122" x2="252" y2="104" stroke="#8E6AAE" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="100" y1="182" x2="100" y2="244" stroke="#F2EEF8" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="160" y1="182" x2="160" y2="244" stroke="#F2EEF8" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+              <line x1="138" y1="270" x2="202" y2="270" stroke="#8E6AAE" stroke-width="0.75"/>
+              <text x="170" y="298" font-family="EB Garamond,Georgia,serif" font-size="22" letter-spacing="6" fill="#F2EEF8" text-anchor="middle">SALUTARIS</text>
+              <line x1="138" y1="312" x2="202" y2="312" stroke="#8E6AAE" stroke-width="0.75"/>
+              <text x="170" y="330" font-family="Jost,sans-serif" font-size="7" letter-spacing="3.5" fill="#BDB8D8" text-anchor="middle">CUSTOM ORGANIC OILS</text>
+            </svg>
+          </div>
+          <div class="lc-meta">
+            <div class="lc-num">v3 · 06</div>
+            <div class="lc-name">Premium Plum</div>
+            <div class="lc-desc">Plum-to-Deep-Night radial gradient. Gift packaging, bespoke &amp; collector line.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="logo-placeholder-note" style="margin-top:32px">
+      <strong>Status:</strong> Final logo not yet selected — all three batches in review. SVG source files and PNG exports (sm/md/lg · transparent + cream/pearl) in <code>logo-concepts/v1/</code>, <code>logo-concepts/v2/</code>, and <code>logo-concepts/v3/</code>. Showcase pages at <code>logo-concepts-v1.html</code>, <code>logo-concepts-v2.html</code>, and <code>logo-concepts-v3.html</code>. Use the palette &amp; mark selectors (bottom-right ↘) to preview any mark in either palette.
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT LABELS -->
+<section class="section labels-section" id="labels">
+  <div class="container">
+    <div class="eyebrow">Product Label System</div>
+    <h2>The label is the<br><em>first impression.</em></h2>
+    <p class="lead">Labels are Salutaris's primary customer-facing deliverable. Each label must communicate purity, precision, and professionalism — at any size, from a 10ml roll-on to a 100ml bottle.</p>
+
+    <div class="label-intro">
+      <div class="label-hierarchy">
+        <h4>Label Information Hierarchy</h4>
+        <div class="hierarchy-row">
+          <span class="hierarchy-num">1</span>
+          <div class="hierarchy-info">
+            <h5>Brand Name</h5>
+            <p>SALUTARIS — always present, small caps, Jost 500, tracked wide</p>
+          </div>
+        </div>
+        <div class="hierarchy-row">
+          <span class="hierarchy-num">2</span>
+          <div class="hierarchy-info">
+            <h5>Product / Blend Name</h5>
+            <p>Largest element — EB Garamond 400, natural name (e.g. "Rosehip Facial Oil")</p>
+          </div>
+        </div>
+        <div class="hierarchy-row">
+          <span class="hierarchy-num">3</span>
+          <div class="hierarchy-info">
+            <h5>Product Type / Collection</h5>
+            <p>Jost 300, tracked uppercase — e.g. "SKIN OIL" or "AROMATIC BLEND"</p>
+          </div>
+        </div>
+        <div class="hierarchy-row">
+          <span class="hierarchy-num">4</span>
+          <div class="hierarchy-info">
+            <h5>Key Ingredients</h5>
+            <p>Jost 200–300, small — e.g. "Rosehip · Jojoba · Vitamin C &amp; E"</p>
+          </div>
+        </div>
+        <div class="hierarchy-row">
+          <span class="hierarchy-num">5</span>
+          <div class="hierarchy-info">
+            <h5>Volume &amp; Batch Code</h5>
+            <p>Bottom of label — smallest text. Volume left, batch code right</p>
+          </div>
+        </div>
+        <div class="hierarchy-row">
+          <span class="hierarchy-num">6</span>
+          <div class="hierarchy-info">
+            <h5>Application Notes (if space allows)</h5>
+            <p>Brief usage note or "For external use only" — Jost 200, micro size</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="label-sizes-table">
+        <h4>Label Size Reference</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Container</th>
+              <th>Label Size</th>
+              <th>Line</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Roll-on vial (5–10ml)</td>
+              <td>1" circle or 1.5" × 0.5"</td>
+              <td><span class="line-dot" style="background:#243D2E"></span>Skin / Any</td>
+            </tr>
+            <tr>
+              <td>Dropper bottle (10–15ml)</td>
+              <td>1.5" × 2"</td>
+              <td><span class="line-dot" style="background:#243D2E"></span>Skin</td>
+            </tr>
+            <tr>
+              <td>Dropper bottle (30ml)</td>
+              <td>2" × 2.75"</td>
+              <td><span class="line-dot" style="background:#5C3B1E"></span>Hair</td>
+            </tr>
+            <tr>
+              <td>Amber bottle (60ml)</td>
+              <td>2.5" × 3"</td>
+              <td><span class="line-dot" style="background:#5C3B1E"></span>Hair / Skin</td>
+            </tr>
+            <tr>
+              <td>Bottle (100ml)</td>
+              <td>3" × 3.5"</td>
+              <td><span class="line-dot" style="background:#8C5242"></span>Aromatic</td>
+            </tr>
+            <tr>
+              <td>Outer box / sleeve</td>
+              <td>Full wrap — custom per SKU</td>
+              <td><span class="line-dot" style="background:#1C1714"></span>Bespoke</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Label mockups — front + back pairs -->
+    <div class="label-pairs">
+
+      <!-- ── SKIN COLLECTION ── -->
+      <div>
+        <div class="label-pair-hdr">
+          <h4>Skin Collection</h4>
+          <span>Cream base · Forest text · Gold rule &nbsp;·&nbsp; 2.5" × 3" label</span>
+        </div>
+        <div class="label-pair-row">
+
+          <!-- FRONT -->
+          <div class="label-pair-col">
+            <span class="label-pair-subtitle pair-front-tag">Front Label</span>
+            <div class="label label-light">
+              <span class="label-brand">Salutaris</span>
+              <span class="label-product">Rosehip<br>Facial Oil</span>
+              <span class="label-type">Skin Oil</span>
+              <div class="label-rule"></div>
+              <span class="label-ingredients">
+                Rosehip Seed · Jojoba<br>
+                Vitamin C &amp; E Complex
+              </span>
+              <div class="label-footer">
+                <span class="label-vol">30 mL / 1 fl oz</span>
+                <span class="label-batch">LOT: SL-001</span>
+              </div>
+            </div>
+            <div class="label-mockup-note">Primary display face — product name dominant</div>
+          </div>
+
+          <!-- BACK -->
+          <div class="label-pair-col">
+            <span class="label-pair-subtitle pair-back-tag">Back Label</span>
+            <div class="label label-light" style="padding:18px 20px 16px">
+              <div class="blb-mark-row">
+                <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
+                  <polygon points="120,18 33,170 207,170" stroke="#243D2E" stroke-width="9" stroke-linejoin="round" fill="none"/>
+                  <line x1="94" y1="64" x2="40" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="70" y1="106" x2="12" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="146" y1="64" x2="200" y2="20" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="170" y1="106" x2="228" y2="90" stroke="#9B7B3D" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="88" y1="170" x2="88" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="152" y1="170" x2="152" y2="222" stroke="#243D2E" stroke-width="9" stroke-linecap="round"/>
+                </svg>
+                <span class="label-brand" style="margin-bottom:0;text-align:center">Salutaris</span>
+              </div>
+
+              <span class="blb-head">Ingredients</span>
+              <span class="blb-inci">Rosa Canina (Rosehip) Fruit Oil*, Simmondsia Chinensis (Jojoba) Seed Oil*, Argania Spinosa (Argan) Kernel Oil*, Tocopherol (Vitamin E), Ascorbic Acid (Vitamin C)</span>
+              <span class="blb-organic">*Certified Organic · Cold-pressed</span>
+
+              <div class="blb-rule"></div>
+
+              <span class="blb-head">How to Use</span>
+              <span class="blb-text">Apply 3–5 drops to clean, slightly damp skin. Gently press into face and neck with upward strokes. Use morning and evening after cleansing.</span>
+
+              <div class="blb-rule"></div>
+
+              <span class="blb-caution">For external use only. Patch test recommended before first use. Avoid direct contact with eyes. Discontinue if irritation occurs. Keep out of reach of children.</span>
+
+              <div class="blb-rule"></div>
+
+              <div class="blb-footer">
+                <div class="blb-foot-left">
+                  <span class="blb-site">salutaris-organics.com</span>
+                  <span class="blb-vol-sm">30 mL / 1 fl oz &nbsp;·&nbsp; LOT: SL-001</span>
+                </div>
+                <div class="blb-barcode">
+                  <svg viewBox="0 0 60 20" width="60" height="20" fill="#1C1714">
+                    <rect x="0"   y="0" width="2"   height="20"/><rect x="3.5" y="0" width="1"   height="20"/><rect x="5.5" y="0" width="1.5" height="20"/>
+                    <rect x="8"   y="0" width="1"   height="20"/><rect x="10"  y="0" width="2.5" height="20"/><rect x="14"  y="0" width="1"   height="20"/>
+                    <rect x="16"  y="0" width="1.5" height="20"/><rect x="18.5" y="0" width="1" height="20"/><rect x="21"  y="0" width="2"   height="20"/>
+                    <rect x="24.5" y="0" width="1"  height="20"/><rect x="26.5" y="0" width="1.5" height="20"/><rect x="29" y="0" width="1"  height="20"/>
+                    <rect x="31.5" y="0" width="2"  height="20"/><rect x="35"  y="0" width="1"   height="20"/><rect x="37" y="0" width="1.5" height="20"/>
+                    <rect x="40"  y="0" width="1"   height="20"/><rect x="42.5" y="0" width="2.5" height="20"/><rect x="47" y="0" width="1"  height="20"/>
+                    <rect x="49.5" y="0" width="1.5" height="20"/><rect x="52" y="0" width="1"   height="20"/><rect x="54.5" y="0" width="2" height="20"/>
+                    <rect x="57.5" y="0" width="1"  height="20"/><rect x="59" y="0" width="1"   height="20"/>
+                  </svg>
+                  <span class="blb-barcode-num">000 · 1234 · 5678</span>
+                </div>
+              </div>
+            </div>
+            <div class="label-mockup-note">Full INCI list · directions · barcode · lot</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HAIR COLLECTION ── -->
+      <div>
+        <div class="label-pair-hdr">
+          <h4>Hair Collection</h4>
+          <span>Forest base · Cream text · Gold rule &nbsp;·&nbsp; 2.5" × 3" label</span>
+        </div>
+        <div class="label-pair-row">
+
+          <!-- FRONT -->
+          <div class="label-pair-col">
+            <span class="label-pair-subtitle pair-front-tag">Front Label</span>
+            <div class="label label-dark">
+              <span class="label-brand">Salutaris</span>
+              <span class="label-product">Argan &amp;<br>Castor Blend</span>
+              <span class="label-type">Hair Treatment</span>
+              <div class="label-rule"></div>
+              <span class="label-ingredients">
+                Argan · Castor · Black Seed<br>
+                Peppermint Essential Oil
+              </span>
+              <div class="label-footer">
+                <span class="label-vol">60 mL / 2 fl oz</span>
+                <span class="label-batch">LOT: SL-002</span>
+              </div>
+            </div>
+            <div class="label-mockup-note">Forest base · Cream text · For hair treatment line</div>
+          </div>
+
+          <!-- BACK -->
+          <div class="label-pair-col">
+            <span class="label-pair-subtitle pair-back-tag">Back Label</span>
+            <div class="label label-dark" style="padding:18px 20px 16px">
+              <div class="blb-mark-row">
+                <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
+                  <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+                  <line x1="94" y1="64" x2="40" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="70" y1="106" x2="12" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="146" y1="64" x2="200" y2="20" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="170" y1="106" x2="228" y2="90" stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                </svg>
+                <span class="label-brand" style="margin-bottom:0;text-align:center">Salutaris</span>
+              </div>
+
+              <span class="blb-head">Ingredients</span>
+              <span class="blb-inci">Argania Spinosa (Argan) Kernel Oil*, Ricinus Communis (Castor) Seed Oil*, Nigella Sativa (Black Seed) Oil*, Mentha Piperita (Peppermint) Leaf Oil</span>
+              <span class="blb-organic">*Certified Organic · Cold-pressed</span>
+
+              <div class="blb-rule"></div>
+
+              <span class="blb-head">How to Use</span>
+              <span class="blb-text">Warm 5–8 drops between palms. Apply to damp hair from mid-lengths to ends. Leave 20–30 min or overnight before washing. For scalp: massage directly in and cover with warm towel.</span>
+
+              <div class="blb-rule"></div>
+
+              <span class="blb-caution">For external use only. Avoid direct contact with eyes. Consult a professional before use during pregnancy. Keep out of reach of children.</span>
+
+              <div class="blb-rule"></div>
+
+              <div class="blb-footer">
+                <div class="blb-foot-left">
+                  <span class="blb-site">salutaris-organics.com</span>
+                  <span class="blb-vol-sm">60 mL / 2 fl oz &nbsp;·&nbsp; LOT: SL-002</span>
+                </div>
+                <div class="blb-barcode">
+                  <svg viewBox="0 0 60 20" width="60" height="20" fill="rgba(240,232,214,0.55)">
+                    <rect x="0"   y="0" width="1.5" height="20"/><rect x="3"   y="0" width="2"   height="20"/><rect x="6.5" y="0" width="1"   height="20"/>
+                    <rect x="9"   y="0" width="1.5" height="20"/><rect x="11.5" y="0" width="1"  height="20"/><rect x="14"  y="0" width="2.5" height="20"/>
+                    <rect x="18"  y="0" width="1"   height="20"/><rect x="20.5" y="0" width="1.5" height="20"/><rect x="23.5" y="0" width="1" height="20"/>
+                    <rect x="26"  y="0" width="2"   height="20"/><rect x="29.5" y="0" width="1"  height="20"/><rect x="32"  y="0" width="1.5" height="20"/>
+                    <rect x="35"  y="0" width="1"   height="20"/><rect x="37.5" y="0" width="2"  height="20"/><rect x="41"  y="0" width="1"   height="20"/>
+                    <rect x="43.5" y="0" width="1.5" height="20"/><rect x="46.5" y="0" width="1" height="20"/><rect x="49"  y="0" width="2"   height="20"/>
+                    <rect x="52.5" y="0" width="1"  height="20"/><rect x="55"  y="0" width="1.5" height="20"/><rect x="57.5" y="0" width="1" height="20"/>
+                    <rect x="59"  y="0" width="1"   height="20"/>
+                  </svg>
+                  <span class="blb-barcode-num">000 · 1234 · 5679</span>
+                </div>
+              </div>
+            </div>
+            <div class="label-mockup-note">Forest base · Cream text · matching front colorway</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AROMATIC LINE ── -->
+      <div>
+        <div class="label-pair-hdr">
+          <h4>Aromatic &amp; Diffuser</h4>
+          <span>Terracotta base · Cream text &nbsp;·&nbsp; 2" × 2.5" label</span>
+        </div>
+        <div class="label-pair-row">
+
+          <!-- FRONT -->
+          <div class="label-pair-col">
+            <span class="label-pair-subtitle pair-front-tag">Front Label</span>
+            <div class="label label-terra">
+              <span class="label-brand">Salutaris</span>
+              <span class="label-product">Cedarwood<br>Calm Blend</span>
+              <span class="label-type">Diffuser Oil</span>
+              <div class="label-rule"></div>
+              <span class="label-ingredients">
+                Cedarwood · Frankincense<br>
+                Sweet Orange · Ylang Ylang
+              </span>
+              <div class="label-footer">
+                <span class="label-vol">15 mL / 0.5 fl oz</span>
+                <span class="label-batch">LOT: SL-003</span>
+              </div>
+            </div>
+            <div class="label-mockup-note">Terracotta base · Cream text · aromatic line</div>
+          </div>
+
+          <!-- BACK -->
+          <div class="label-pair-col">
+            <span class="label-pair-subtitle pair-back-tag">Back Label</span>
+            <div class="label label-terra" style="padding:18px 20px 16px">
+              <div class="blb-mark-row">
+                <svg viewBox="0 0 240 240" width="13" height="13" fill="none">
+                  <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+                  <line x1="94" y1="64" x2="40" y2="20" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="70" y1="106" x2="12" y2="90" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="146" y1="64" x2="200" y2="20" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="170" y1="106" x2="228" y2="90" stroke="rgba(240,232,214,0.55)" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="88" y1="170" x2="88" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                  <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+                </svg>
+                <span class="label-brand" style="margin-bottom:0;text-align:center">Salutaris</span>
+              </div>
+
+              <span class="blb-head">Ingredients</span>
+              <span class="blb-inci">Cedrus Atlantica (Cedarwood) Bark Oil, Boswellia Carterii (Frankincense) Resin Oil, Citrus Sinensis (Sweet Orange) Peel Oil (expressed), Cananga Odorata (Ylang Ylang) Flower Oil</span>
+              <span class="blb-organic">100% pure &amp; natural essential oil blend</span>
+
+              <div class="blb-rule"></div>
+
+              <span class="blb-head">How to Use</span>
+              <span class="blb-text">Diffuser: Add 5–8 drops per 100 mL water. Run 30–60 min. Topical: Dilute 2–3 drops per 10 mL carrier oil. Do not apply undiluted to skin.</span>
+
+              <div class="blb-rule"></div>
+
+              <span class="blb-caution">Do not apply undiluted to skin. Not for internal use. Keep away from children and pets. Sweet Orange oil may cause photosensitivity — avoid sun exposure after topical use.</span>
+
+              <div class="blb-rule"></div>
+
+              <div class="blb-footer">
+                <div class="blb-foot-left">
+                  <span class="blb-site">salutaris-organics.com</span>
+                  <span class="blb-vol-sm">15 mL / 0.5 fl oz &nbsp;·&nbsp; LOT: SL-003</span>
+                </div>
+                <div class="blb-barcode">
+                  <svg viewBox="0 0 60 20" width="60" height="20" fill="rgba(240,232,214,0.55)">
+                    <rect x="0"   y="0" width="2.5" height="20"/><rect x="4"   y="0" width="1"   height="20"/><rect x="6.5" y="0" width="1.5" height="20"/>
+                    <rect x="9.5" y="0" width="1"   height="20"/><rect x="12"  y="0" width="2"   height="20"/><rect x="15.5" y="0" width="1"  height="20"/>
+                    <rect x="17.5" y="0" width="1.5" height="20"/><rect x="20.5" y="0" width="1" height="20"/><rect x="23"  y="0" width="2.5" height="20"/>
+                    <rect x="26.5" y="0" width="1"  height="20"/><rect x="28.5" y="0" width="1.5" height="20"/><rect x="31" y="0" width="1"  height="20"/>
+                    <rect x="33.5" y="0" width="2"  height="20"/><rect x="37"  y="0" width="1"   height="20"/><rect x="39" y="0" width="1"   height="20"/>
+                    <rect x="42"  y="0" width="2.5" height="20"/><rect x="46"  y="0" width="1"   height="20"/><rect x="48.5" y="0" width="1.5" height="20"/>
+                    <rect x="51.5" y="0" width="1"  height="20"/><rect x="54"  y="0" width="2"   height="20"/><rect x="57.5" y="0" width="1.5" height="20"/>
+                  </svg>
+                  <span class="blb-barcode-num">000 · 1234 · 5680</span>
+                </div>
+              </div>
+            </div>
+            <div class="label-mockup-note">Essential oil cautions + dilution guidance</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /label-pairs -->
+
+    <!-- Roll-on circular label -->
+    <div style="margin-top:52px;padding-top:48px;border-top:1px solid var(--linen)">
+      <div class="eyebrow" style="color:var(--gold);margin-bottom:20px">Roll-On &amp; Vial Labels</div>
+      <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+        <div class="label-mockup-wrap">
+          <div class="label-mockup-title">Circle Label — 1" dia.</div>
+          <div class="label-circle lc-forest">
+            <div class="lc-brand">Salutaris</div>
+            <div class="lc-name">Calm<br>Blend</div>
+            <div class="lc-vol">10 mL</div>
+          </div>
+          <div class="label-mockup-note" style="max-width:120px">Roll-on top or base of bottle</div>
+        </div>
+        <div style="max-width:500px;padding-top:8px">
+          <p style="font-family:var(--ff-serif);font-size:18px;font-style:italic;color:var(--stone);line-height:1.65;margin-bottom:16px">"At small scale, only essentials survive — brand, name, and volume. The mark must be clean enough to read on a 1-inch label."</p>
+          <p style="font-size:13px;color:var(--stone);line-height:1.7">Roll-on and vial labels should use the circular format when possible. Prioritize the blend name in EB Garamond over everything else. The brand name can reduce to 6pt Jost. Batch code can move to the bottom of the bottle cap.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS CARDS -->
+<section class="section cards-section" id="cards">
+  <div class="container">
+    <div class="eyebrow">Business Cards</div>
+    <h2>Leave something<br><em>worth keeping.</em></h2>
+    <p class="lead">The Salutaris business card should feel like a small artifact — weighted, considered, and reflective of the brand's premium positioning. Standard 3.5" × 2" format with premium card stock recommended.</p>
+
+    <div class="card-layout">
+      <div class="cards-stack">
+        <div class="card-set-label">Front</div>
+        <div class="biz-card biz-card-front">
+          <div class="card-front-inner">
+            <div class="card-logo-line">
+              <div class="card-name-lg">Salutaris</div>
+              <div class="card-tagline-sm">Custom Organic Oils</div>
+              <div class="card-rule"></div>
+            </div>
+            <div class="card-person-info">
+              <div class="card-person-name">Your Name Here</div>
+              <div class="card-person-title">Founder &amp; Formulator</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-set-label" style="margin-top:8px">Back</div>
+        <div class="biz-card biz-card-back">
+          <div class="card-back-inner">
+            <div class="card-contact-block">
+              <div class="card-contact-row">
+                <span class="contact-label">Phone</span>
+                <span class="contact-value">(000) 000-0000</span>
+              </div>
+              <div class="card-contact-row">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">hello@salutaris.com</span>
+              </div>
+              <div class="card-contact-row">
+                <span class="contact-label">Web</span>
+                <span class="contact-value">salutaris-organics.com</span>
+              </div>
+              <div class="card-contact-row">
+                <span class="contact-label">Studio</span>
+                <span class="contact-value">By Appointment</span>
+              </div>
+            </div>
+            <div class="card-back-rule"></div>
+            <div class="card-back-brand">Salutaris &nbsp;·&nbsp; Custom Organic Oils &nbsp;·&nbsp; Est. 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card-specs">
+          <h4>Card Specifications</h4>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">3.5" × 2" (88.9mm × 50.8mm)</span></div>
+          <div class="spec-row"><span class="spec-key">Stock</span><span class="spec-val">16pt or 18pt matte / soft-touch</span></div>
+          <div class="spec-row"><span class="spec-key">Finish</span><span class="spec-val">Matte laminate recommended</span></div>
+          <div class="spec-row"><span class="spec-key">Special</span><span class="spec-val">Consider soft spot UV on logo or gold foil on name</span></div>
+          <div class="spec-row"><span class="spec-key">Bleed</span><span class="spec-val">0.125" bleed on all sides for print</span></div>
+          <div class="spec-row"><span class="spec-key">Front bg</span><span class="spec-val">Forest #243D2E</span></div>
+          <div class="spec-row"><span class="spec-key">Back bg</span><span class="spec-val">Cream #F0E8D6</span></div>
+        </div>
+
+        <div class="card-variants">
+          <div class="card-variant-note">
+            <h5>Standard Variant</h5>
+            <p>Forest front, cream back. For general use and consultations. Primary card for the brand.</p>
+          </div>
+          <div class="card-variant-note">
+            <h5>Premium Variant</h5>
+            <p>Charcoal front with gold foil name, cream back. For bespoke client gifting and high-end limited runs.</p>
+          </div>
+          <div class="card-variant-note">
+            <h5>Cream Variant</h5>
+            <p>Cream front with Forest text. For markets and events — lighter feel, still on-brand.</p>
+          </div>
+          <div class="card-variant-note">
+            <h5>Custom Inserts</h5>
+            <p>Small thank-you cards in the same system for product packaging — same specs at 2" × 3".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETING -->
+<section class="section marketing-section" id="marketing">
+  <div class="container">
+    <div class="eyebrow">Marketing Collateral</div>
+    <h2>Every touchpoint,<br><em>considered.</em></h2>
+    <p class="lead">From consultation sell sheets to product one-pagers and packaging inserts — all collateral follows the same typographic system and palette. Build out each piece as the need arises.</p>
+
+    <div class="marketing-grid">
+      <div class="marketing-card">
+        <div class="marketing-card-top" style="background:var(--forest)">
+          <span class="mkt-top-label">Priority 01</span>
+        </div>
+        <div class="marketing-card-body">
+          <h4>Services / Consultation Sheet</h4>
+          <p>A single-page document outlining services, the custom formulation process, pricing tiers, and what to expect from a consultation.</p>
+          <ul>
+            <li>8.5" × 11" or A4, single-sided</li>
+            <li>Forest header band with cream body</li>
+            <li>EB Garamond headlines + Jost body</li>
+            <li>Gold accent rules throughout</li>
+            <li>QR code or contact block at bottom</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="marketing-card">
+        <div class="marketing-card-top" style="background:var(--earth)">
+          <span class="mkt-top-label">Priority 02</span>
+        </div>
+        <div class="marketing-card-body">
+          <h4>Product Line One-Pager</h4>
+          <p>A per-collection product overview — listing available blends, key ingredients, and suggested use cases for retail or wholesale partners.</p>
+          <ul>
+            <li>8.5" × 11", can be two-sided</li>
+            <li>Color matches product line (Forest / Earth / Terracotta)</li>
+            <li>Product imagery or illustration area</li>
+            <li>Clean table layout for SKU list</li>
+            <li>Ordering / contact information footer</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="marketing-card">
+        <div class="marketing-card-top" style="background:var(--charcoal)">
+          <span class="mkt-top-label">Priority 03</span>
+        </div>
+        <div class="marketing-card-body">
+          <h4>Packaging Inserts &amp; Thank-You Cards</h4>
+          <p>Small printed cards included with every order — reinforcing the brand, providing care instructions, and inviting the client back.</p>
+          <ul>
+            <li>2" × 3" or 3" × 4" card</li>
+            <li>Cream stock with Forest or charcoal print</li>
+            <li>Handwritten name field (space to personalize)</li>
+            <li>Care instructions on reverse</li>
+            <li>Salutaris wordmark centered</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="marketing-card">
+        <div class="marketing-card-top" style="background:var(--terracotta)">
+          <span class="mkt-top-label">Priority 04</span>
+        </div>
+        <div class="marketing-card-body">
+          <h4>Letterhead &amp; Invoice</h4>
+          <p>Branded letterhead for client communications, custom formulation agreements, and invoices. Clean, professional, unmistakably Salutaris.</p>
+          <ul>
+            <li>8.5" × 11", header + footer band</li>
+            <li>Forest or cream header depending on use</li>
+            <li>Contact block in header, legal in footer</li>
+            <li>Neutral body area for variable content</li>
+            <li>Digital (.docx / .pdf) and print-ready versions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="marketing-card">
+        <div class="marketing-card-top" style="background:var(--sage)">
+          <span class="mkt-top-label">Future</span>
+        </div>
+        <div class="marketing-card-body">
+          <h4>Wholesale / Trade Deck</h4>
+          <p>A multi-page brand and product deck for wholesale partners and limited-run clients. Covers brand story, formulation process, product lines, and ordering terms.</p>
+          <ul>
+            <li>PDF presentation (8.5" × 11" landscape)</li>
+            <li>6–12 pages</li>
+            <li>Brand story, process, product catalog</li>
+            <li>MOQ and ordering info</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="marketing-card">
+        <div class="marketing-card-top" style="background:var(--stone)">
+          <span class="mkt-top-label">Future</span>
+        </div>
+        <div class="marketing-card-body">
+          <h4>Website &amp; Digital</h4>
+          <p>No immediate plans for a website. When the time comes, this brand system translates directly — palette, type, voice, and label language all carry over.</p>
+          <ul>
+            <li>Domain and hosting — not yet active</li>
+            <li>Core pages: Home, Services, Shop, About, Contact</li>
+            <li>Same fonts available via Google Fonts</li>
+            <li>E-commerce integration (Shopify recommended)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="section voice-section" id="voice">
+  <div class="container">
+    <div class="eyebrow">Brand Voice</div>
+    <h2>How <em>Salutaris</em> speaks.</h2>
+    <p class="lead">Authoritative without being clinical. Warm without being casual. The voice carries the weight of expertise lightly — never overwhelming, always considered.</p>
+
+    <div class="voice-grid gap-md">
+      <div class="voice-card">
+        <h3>Precise &amp; Knowledgeable</h3>
+        <p>We know our craft. Copy should reflect deep formulation knowledge without lecturing. Let the ingredients and process speak with quiet confidence.</p>
+        <div class="voice-example">"Formulated with cold-pressed rosehip seed oil — selected for its concentration of trans-retinoic acid and omega fatty acids, not its label appeal."</div>
+        <div class="voice-dont">Avoid: "This oil is AMAZING and great for your skin! Everyone loves it!"</div>
+      </div>
+
+      <div class="voice-card">
+        <h3>Warm &amp; Personal</h3>
+        <p>Every blend starts with a conversation. The copy should feel like it comes from a formulator who cares — not a marketing team. First person where appropriate.</p>
+        <div class="voice-example">"Tell us what you're working with. We'll build something that actually fits."</div>
+        <div class="voice-dont">Avoid: "Our proprietary system delivers optimal results for all skin types."</div>
+      </div>
+
+      <div class="voice-card">
+        <h3>Restrained &amp; Considered</h3>
+        <p>We don't oversell. Every word earns its place — on a label, on a card, in a conversation. Less copy, more weight.</p>
+        <div class="voice-example">"Rosehip Facial Oil. 30ml. Organic cold-pressed · skin barrier support."</div>
+        <div class="voice-dont">Avoid: "Revolutionary breakthrough formula transforms your skin overnight with visible results!"</div>
+      </div>
+
+      <div class="voice-card">
+        <h3>Grounded in Nature</h3>
+        <p>Reference the source, not the science jargon. Botanical names welcome. Chemistry in plain terms. The land, the plant, the oil — in that order.</p>
+        <div class="voice-example">"Cedarwood — harvested slow-grown, steam distilled. Grounding. Long-lasting. The kind of quiet that settles."</div>
+        <div class="voice-dont">Avoid: "Contains advanced phytochemical bioactive compounds for synergistic wellness optimization."</div>
+      </div>
+    </div>
+
+    <div class="voice-words">
+      <span class="voice-word">Intentional</span>
+      <span class="voice-word">Crafted</span>
+      <span class="voice-word">Organic</span>
+      <span class="voice-word">Targeted</span>
+      <span class="voice-word">Considered</span>
+      <span class="voice-word">Botanical</span>
+      <span class="voice-word">Precise</span>
+      <span class="voice-word">Honest</span>
+      <span class="voice-word">Grounded</span>
+      <span class="voice-word">Small-batch</span>
+      <span class="voice-word">Custom</span>
+      <span class="voice-word">Purposeful</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section roadmap-section" id="roadmap">
+  <div class="container">
+    <div class="eyebrow">Project Roadmap</div>
+    <h2>What we're<br><em>building toward.</em></h2>
+    <p class="lead">This document grows with the brand. Current priorities are labels and business cards. Future sections will be added as deliverables are developed.</p>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-card active">
+        <span class="roadmap-badge badge-active">In Progress</span>
+        <h4>Phase 1 — Identity Foundation</h4>
+        <p>Establish the brand's visual and verbal identity before producing any physical materials.</p>
+        <ul>
+          <li>Brand color palette — complete</li>
+          <li>Typography system — complete</li>
+          <li>Brand voice &amp; positioning — complete</li>
+          <li>Logo / wordmark — in development</li>
+          <li>Graphic element / botanical mark — in development</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card active">
+        <span class="roadmap-badge badge-active">In Progress</span>
+        <h4>Phase 2 — Physical Collateral</h4>
+        <p>The core priority: labels and cards that go out with every product and interaction.</p>
+        <ul>
+          <li>Product label system — in progress</li>
+          <li>Label size templates (Illustrator/PDF) — upcoming</li>
+          <li>Business card final artwork — upcoming</li>
+          <li>Packaging inserts — upcoming</li>
+          <li>Print-ready files for all label variants</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <span class="roadmap-badge badge-future">Upcoming</span>
+        <h4>Phase 3 — Marketing Materials</h4>
+        <p>Sales and client-facing documents to support consultations, wholesale, and events.</p>
+        <ul>
+          <li>Services / consultation one-pager</li>
+          <li>Product line sell sheets (per collection)</li>
+          <li>Letterhead &amp; invoice template</li>
+          <li>Thank-you card / insert artwork</li>
+          <li>Wholesale / trade deck (if needed)</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <span class="roadmap-badge badge-future">Deferred</span>
+        <h4>Phase 4 — Digital &amp; Web</h4>
+        <p>No immediate plans. When ready, this brand system translates directly to digital with no reinvention needed.</p>
+        <ul>
+          <li>Website design &amp; development</li>
+          <li>E-commerce (Shopify or similar)</li>
+          <li>Social media templates</li>
+          <li>Digital product catalog</li>
+          <li>Email templates</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Salutaris</div>
+    <div class="footer-sub">Custom Organic Oils</div>
+    <div class="footer-rule"></div>
+    <div class="footer-meta">Brand Identity Guide v1 &nbsp;·&nbsp; July 2026 &nbsp;·&nbsp; Confidential</div>
+  </div>
+</footer>
+
+<!-- BRAND SWITCHER -->
+<div id="brand-switcher">
+  <div id="sw-panel">
+    <span class="sw-label">Color Palette</span>
+    <div id="sw-pal-list"></div>
+    <div class="sw-divider"></div>
+    <span class="sw-label">Primary Mark</span>
+    <div class="sw-icon-grid" id="sw-icon-grid"></div>
+  </div>
+  <button id="sw-toggle" aria-label="Open brand switcher" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <line x1="2" y1="5"  x2="18" y2="5"  stroke="#F0E8D6" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="7"  cy="5"  r="2.5" fill="#F0E8D6"/>
+      <line x1="2" y1="10" x2="18" y2="10" stroke="#F0E8D6" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="13" cy="10" r="2.5" fill="#F0E8D6"/>
+      <line x1="2" y1="15" x2="18" y2="15" stroke="#F0E8D6" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="8"  cy="15" r="2.5" fill="#F0E8D6"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+// ── SCROLL REVEAL ──
+const sections = document.querySelectorAll('.section');
+const revealObs = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.06 }
+);
+sections.forEach(s => {
+  s.style.opacity = '0';
+  s.style.transform = 'translateY(24px)';
+  s.style.transition = 'opacity .7s ease, transform .7s ease';
+  revealObs.observe(s);
+});
+
+// ── BRAND SWITCHER ──
+
+const PALETTES = {
+  forest: {
+    id: 'forest',
+    name: 'Warm Forest',
+    sub: 'Original',
+    vars: {
+      '--forest':     '#243D2E',
+      '--sage':       '#5E7A58',
+      '--terracotta': '#8C5242',
+      '--earth':      '#5C3B1E',
+      '--cream':      '#F0E8D6',
+      '--linen':      '#E8DECE',
+      '--sand':       '#C8A97A',
+      '--gold':       '#9B7B3D',
+      '--charcoal':   '#1C1714',
+      '--stone':      '#7A7265',
+    },
+    dots: ['#243D2E','#5E7A58','#8C5242','#9B7B3D','#F0E8D6'],
+    navBg: 'rgba(240,232,214,0.94)',
+    defaultMark: 'bold-twotone',
+    cells: {
+      dark:   { s: '#F0E8D6', a: '#C8A97A' },
+      forest: { s: '#F0E8D6', a: '#C8A97A' },
+      light:  { s: '#243D2E', a: '#9B7B3D' },
+    },
+    thumb: { s: '#243D2E', a: '#9B7B3D' },
+    coverSwatches: ['#243D2E','#5E7A58','#8C5242','#9B7B3D','#5C3B1E','#F0E8D6','#C8A97A'],
+    swatchRows: {
+      primary: [
+        { hex:'#243D2E', name:'Forest',       role:'Primary · Brand anchor',              light:false },
+        { hex:'#5E7A58', name:'Sage',          role:'Secondary green · supports Forest',   light:false },
+        { hex:'#8C5242', name:'Terracotta',    role:'Earthy accent · aromatic line',       light:false },
+        { hex:'#9B7B3D', name:'Antique Gold',  role:'Premium accent · rules &amp; details', light:false },
+        { hex:'#5C3B1E', name:'Earth',         role:'Rich brown · hair line',              light:false },
+      ],
+      support: [
+        { hex:'#F0E8D6', name:'Cream',    role:'Primary background &amp; label base', light:true  },
+        { hex:'#E8DECE', name:'Linen',    role:'Secondary background',                 light:true  },
+        { hex:'#C8A97A', name:'Sand',     role:'Warm neutral · supporting text',       light:true  },
+        { hex:'#7A7265', name:'Stone',    role:'Muted neutral · body text',            light:false },
+        { hex:'#1C1714', name:'Charcoal', role:'Near-black · primary text',            light:false },
+      ],
+    },
+  },
+  midnight: {
+    id: 'midnight',
+    name: 'Midnight Botanical',
+    sub: 'v3 Alternate',
+    vars: {
+      '--forest':     '#1E2240',
+      '--sage':       '#4B5FA0',
+      '--terracotta': '#9B6B8A',
+      '--earth':      '#4A2D5A',
+      '--cream':      '#F2EEF8',
+      '--linen':      '#E4DFF0',
+      '--sand':       '#BDB8D8',
+      '--gold':       '#8E6AAE',
+      '--charcoal':   '#171520',
+      '--stone':      '#6E6B85',
+    },
+    dots: ['#1E2240','#4B5FA0','#9B6B8A','#8E6AAE','#F2EEF8'],
+    navBg: 'rgba(242,238,248,0.94)',
+    defaultMark: 'hairline-3branch',
+    cells: {
+      dark:   { s: '#F2EEF8', a: '#8E6AAE' },
+      forest: { s: '#F2EEF8', a: '#8E6AAE' },
+      light:  { s: '#1E2240', a: '#8E6AAE' },
+    },
+    thumb: { s: '#1E2240', a: '#8E6AAE' },
+    coverSwatches: ['#1E2240','#4B5FA0','#9B6B8A','#8E6AAE','#4A2D5A','#F2EEF8','#BDB8D8'],
+    swatchRows: {
+      primary: [
+        { hex:'#1E2240', name:'Midnight',  role:'Primary · Brand anchor',              light:false },
+        { hex:'#4B5FA0', name:'Iris',      role:'Secondary blue · supports Midnight',  light:false },
+        { hex:'#9B6B8A', name:'Mauve',     role:'Purple accent · aromatic line',       light:false },
+        { hex:'#8E6AAE', name:'Amethyst',  role:'Premium accent · rules &amp; details', light:false },
+        { hex:'#4A2D5A', name:'Plum',      role:'Deep purple · hair line',             light:false },
+      ],
+      support: [
+        { hex:'#F2EEF8', name:'Pearl',        role:'Primary background &amp; label base', light:true  },
+        { hex:'#E4DFF0', name:'Lilac Linen',  role:'Secondary background',               light:true  },
+        { hex:'#BDB8D8', name:'Periwinkle',   role:'Cool neutral · supporting text',     light:true  },
+        { hex:'#6E6B85', name:'Slate',        role:'Muted neutral · body text',          light:false },
+        { hex:'#171520', name:'Deep Night',   role:'Near-black · primary text',          light:false },
+      ],
+    },
+  },
+};
+
+const MARKS = {
+  'bold-twotone': {
+    label: 'Bold · Two-Tone', vw: 240, vh: 240, sw: 9,
+    p: (s,a,w) => `
+      <polygon points="120,18 33,170 207,170" stroke="${s}" stroke-width="${w}" stroke-linejoin="round" fill="none"/>
+      <line x1="94" y1="64" x2="40" y2="20" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="70" y1="106" x2="12" y2="90" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="146" y1="64" x2="200" y2="20" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="170" y1="106" x2="228" y2="90" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="88" y1="170" x2="88" y2="222" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="152" y1="170" x2="152" y2="222" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>`,
+  },
+  'bold-mono': {
+    label: 'Bold · Mono', vw: 240, vh: 240, sw: 9,
+    p: (s,a,w) => `
+      <polygon points="120,18 33,170 207,170" stroke="${s}" stroke-width="${w}" stroke-linejoin="round" fill="none"/>
+      <line x1="94" y1="64" x2="40" y2="20" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="70" y1="106" x2="12" y2="90" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="146" y1="64" x2="200" y2="20" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="170" y1="106" x2="228" y2="90" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="88" y1="170" x2="88" y2="222" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="152" y1="170" x2="152" y2="222" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>`,
+  },
+  'hairline-3branch': {
+    label: 'Hairline · 3-Branch', vw: 260, vh: 260, sw: 1.8,
+    p: (s,a,w) => `
+      <polygon points="130,14 36,182 224,182" stroke="${s}" stroke-width="${w}" stroke-linejoin="round" fill="none"/>
+      <line x1="111" y1="48" x2="64" y2="8" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="91" y1="85" x2="25" y2="66" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="70" y1="122" x2="8" y2="104" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="149" y1="48" x2="196" y2="8" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="170" y1="85" x2="236" y2="66" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="190" y1="122" x2="252" y2="104" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="100" y1="182" x2="100" y2="244" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="160" y1="182" x2="160" y2="244" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>`,
+  },
+  'medium-hybrid': {
+    label: 'Medium · Hybrid', vw: 260, vh: 260, sw: 4.5,
+    p: (s,a,w) => `
+      <polygon points="130,14 36,182 224,182" stroke="${s}" stroke-width="${w}" stroke-linejoin="round" fill="none"/>
+      <line x1="111" y1="48" x2="64" y2="8" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="91" y1="85" x2="25" y2="66" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="70" y1="122" x2="8" y2="104" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="149" y1="48" x2="196" y2="8" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="170" y1="85" x2="236" y2="66" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="190" y1="122" x2="252" y2="104" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="100" y1="182" x2="100" y2="244" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      <line x1="160" y1="182" x2="160" y2="244" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>`,
+  },
+  'bold-seal': {
+    label: 'Bold · Seal', vw: 260, vh: 260, sw: 7,
+    p: (s,a,w) => `
+      <circle cx="130" cy="126" r="118" stroke="${s}" stroke-width="2" fill="none"/>
+      <circle cx="130" cy="126" r="110" stroke="${a}" stroke-width="0.8" fill="none"/>
+      <g transform="translate(7,0) scale(0.88)">
+        <polygon points="120,18 33,170 207,170" stroke="${s}" stroke-width="${w}" stroke-linejoin="round" fill="none"/>
+        <line x1="94" y1="64" x2="40" y2="20" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+        <line x1="70" y1="106" x2="12" y2="90" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+        <line x1="146" y1="64" x2="200" y2="20" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+        <line x1="170" y1="106" x2="228" y2="90" stroke="${a}" stroke-width="${w}" stroke-linecap="round"/>
+        <line x1="88" y1="170" x2="88" y2="222" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+        <line x1="152" y1="170" x2="152" y2="222" stroke="${s}" stroke-width="${w}" stroke-linecap="round"/>
+      </g>`,
+  },
+  'hairline-seal': {
+    label: 'Hairline · Seal', vw: 280, vh: 280, sw: 1.8,
+    p: (s,a,w) => `
+      <circle cx="140" cy="132" r="126" stroke="${s}" stroke-width="1.8" fill="none"/>
+      <circle cx="140" cy="132" r="118" stroke="${a}" stroke-width="0.75" fill="none"/>
+      <g transform="translate(40,31) scale(0.77)">
+        <polygon points="130,14 36,182 224,182" stroke="${s}" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+        <line x1="111" y1="48" x2="64" y2="8" stroke="${a}" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="91" y1="85" x2="25" y2="66" stroke="${a}" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="70" y1="122" x2="8" y2="104" stroke="${a}" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="149" y1="48" x2="196" y2="8" stroke="${a}" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="170" y1="85" x2="236" y2="66" stroke="${a}" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="190" y1="122" x2="252" y2="104" stroke="${a}" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="100" y1="182" x2="100" y2="226" stroke="${s}" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="160" y1="182" x2="160" y2="226" stroke="${s}" stroke-width="2.4" stroke-linecap="round"/>
+      </g>`,
+  },
+};
+
+const MARK_ORDER = ['bold-twotone','bold-mono','hairline-3branch','medium-hybrid','bold-seal','hairline-seal'];
+
+let activePalette = 'forest';
+let activeMark    = 'bold-twotone';
+
+// ── Build an SVG string for a given mark + colors ──
+function markSVG(markId, struct, accent, size) {
+  const m = MARKS[markId];
+  return `<svg viewBox="0 0 ${m.vw} ${m.vh}" width="${size}" height="${size}" fill="none" style="margin:0 auto 14px;display:block;">${m.p(struct, accent, m.sw)}</svg>`;
+}
+
+// ── Update the 3 featured logo cells ──
+function updateLogoCells(palId, markId) {
+  const c = PALETTES[palId].cells;
+  [['dark', c.dark], ['forest', c.forest], ['light', c.light]].forEach(([type, col]) => {
+    const cell = document.getElementById('logo-cell-' + type);
+    if (!cell) return;
+    const old = cell.querySelector('svg');
+    if (!old) return;
+    const tmp = document.createElement('div');
+    tmp.innerHTML = markSVG(markId, col.s, col.a, 110);
+    old.replaceWith(tmp.firstChild);
+  });
+}
+
+// ── Update cover palette swatches ──
+function updateCoverSwatches(palId) {
+  const sw = PALETTES[palId].coverSwatches;
+  document.querySelectorAll('.cover-swatch').forEach((el, i) => {
+    if (sw[i]) el.style.background = sw[i];
+  });
+}
+
+// ── Rebuild the palette swatch grids ──
+function buildSwatchGrids(palId) {
+  const pal = PALETTES[palId];
+  function row(items) {
+    return items.map(({ hex, name, role, light }) => `
+      <div class="swatch">
+        <div class="swatch-color${light ? ' light' : ''}" style="background:${hex};cursor:pointer" data-hex="${hex}">
+          <span class="swatch-hex"${light ? ' style="color:rgba(28,23,20,0.6)"' : ''}>${hex}</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">${name}</div>
+          <div class="swatch-role">${role}</div>
+        </div>
+      </div>`).join('');
+  }
+  const prim = document.getElementById('swatches-primary');
+  const supp = document.getElementById('swatches-support');
+  if (prim) { prim.innerHTML = row(pal.swatchRows.primary); }
+  if (supp) { supp.innerHTML = row(pal.swatchRows.support); }
+  // Re-attach click-to-copy
+  document.querySelectorAll('.swatch-color[data-hex]').forEach(el => {
+    el.addEventListener('click', () => navigator.clipboard?.writeText(el.dataset.hex));
+  });
+}
+
+// ── Rebuild icon grid ──
+function buildIconGrid(palId, activeMarkId) {
+  const pal = PALETTES[palId];
+  const { s, a } = pal.thumb;
+  const grid = document.getElementById('sw-icon-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  MARK_ORDER.forEach(markId => {
+    const m = MARKS[markId];
+    const btn = document.createElement('button');
+    btn.className = 'sw-icon-btn' + (markId === activeMarkId ? ' active' : '');
+    btn.dataset.mark = markId;
+    btn.innerHTML = `
+      <svg viewBox="0 0 ${m.vw} ${m.vh}" width="38" height="38" fill="none">${m.p(s, a, m.sw)}</svg>
+      <span class="sw-icon-tip">${m.label}</span>`;
+    btn.addEventListener('click', () => {
+      activeMark = markId;
+      document.querySelectorAll('.sw-icon-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateLogoCells(activePalette, markId);
+    });
+    grid.appendChild(btn);
+  });
+}
+
+// ── Build palette cards ──
+function buildPaletteList(activePalId) {
+  const list = document.getElementById('sw-pal-list');
+  if (!list) return;
+  list.innerHTML = '';
+  Object.values(PALETTES).forEach(pal => {
+    const card = document.createElement('div');
+    card.className = 'sw-pal-card' + (pal.id === activePalId ? ' active' : '');
+    card.dataset.palette = pal.id;
+    card.innerHTML = `
+      <div class="sw-pal-dots">
+        ${pal.dots.map((c, i) => `<div class="sw-pal-dot${i === 4 ? ' sw-light' : ''}" style="background:${c}"></div>`).join('')}
+      </div>
+      <div class="sw-pal-info">
+        <span class="sw-pal-name">${pal.name}</span>
+        <span class="sw-pal-sub">${pal.sub}</span>
+      </div>
+      <span class="sw-pal-check">✓</span>`;
+    card.addEventListener('click', () => applyPalette(pal.id));
+    list.appendChild(card);
+  });
+}
+
+// ── Apply palette ──
+function applyPalette(palId) {
+  const pal = PALETTES[palId];
+  const root = document.documentElement;
+  Object.entries(pal.vars).forEach(([k, v]) => root.style.setProperty(k, v));
+  // Nav (hardcoded bg)
+  const nav = document.querySelector('nav');
+  if (nav) nav.style.background = pal.navBg;
+  updateCoverSwatches(palId);
+  buildSwatchGrids(palId);
+  // Switch to default mark for this palette
+  activeMark = pal.defaultMark;
+  updateLogoCells(palId, activeMark);
+  buildIconGrid(palId, activeMark);
+  // Update palette card active states
+  document.querySelectorAll('.sw-pal-card').forEach(c => c.classList.toggle('active', c.dataset.palette === palId));
+  activePalette = palId;
+}
+
+// ── Toggle panel ──
+const swToggle = document.getElementById('sw-toggle');
+const swPanel  = document.getElementById('sw-panel');
+
+swToggle.addEventListener('click', e => {
+  e.stopPropagation();
+  const open = swPanel.classList.toggle('open');
+  swToggle.classList.toggle('open', open);
+  swToggle.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', e => {
+  if (!document.getElementById('brand-switcher').contains(e.target)) {
+    swPanel.classList.remove('open');
+    swToggle.classList.remove('open');
+    swToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    swPanel.classList.remove('open');
+    swToggle.classList.remove('open');
+    swToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// ── Init ──
+buildPaletteList(activePalette);
+buildIconGrid(activePalette, activeMark);
+</script>
+</body>
+</html>
