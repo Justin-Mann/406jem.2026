@@ -636,12 +636,22 @@ tr:last-child td { border-bottom: none; }
   display: flex; flex-direction: column; justify-content: space-between;
   z-index: 1;
 }
-/* Mark accent, upper-right corner — sized to 1/5 the card's height (itself,
-   not a wrapper), so it scales correctly whether the card is the fixed
-   420×240px desktop spec size or the fluid mobile version. */
+/* Mark accent, upper-right corner — sized and placed by the golden ratio (φ
+   ≈ 1.618), not arbitrary pixels, so both the icon and its surrounding
+   whitespace read as intentional proportions rather than "eyeballed."
+     • Icon height = card height / φ³ ≈ 23.6% (φ³ ≈ 4.236) — a size step up
+       from a plain 1/5, and the icon stays a true square via aspect-ratio
+       regardless of the card's own 7:4 proportions.
+     • Inset from each edge = icon height / φ ≈ 14.6% of the *same* physical
+       measure — i.e. the icon and its margin are themselves golden-ratio
+       proportioned to each other. `top` resolves against the card's height
+       directly; `right` resolves against its *width* per the CSS spec, so
+       that value is the same physical inset re-expressed through the
+       card's fixed 7:4 aspect ratio (14.6% ÷ 1.75 ≈ 8.34%) — both compute
+       to the same pixel margin at any card size, fixed or fluid. */
 .card-logo-mark {
-  position: absolute; top: 20px; right: 24px;
-  height: 20%; width: 20%;
+  position: absolute; top: 14.6%; right: 8.34%;
+  height: 23.6%; aspect-ratio: 1 / 1;
   z-index: 1;
 }
 .card-logo-mark svg { display: block; width: 100%; height: 100%; }
