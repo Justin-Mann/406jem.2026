@@ -1037,6 +1037,107 @@ footer {
   pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 10;
 }
 .sw-icon-btn:hover .sw-icon-tip { opacity: 1; }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — everything above this line is the original
+   desktop-fixed layout, untouched. Two breakpoints layered on
+   top: tablet (≤1024px) thins the widest grids; mobile (≤767px)
+   stacks everything to a single column and rescales the hero.
+   ══════════════════════════════════════════════════════════ */
+
+/* ── TABLET (≤1024px) ── */
+@media (max-width: 1024px) {
+  .container { padding: 0 40px; }
+
+  .swatches-primary, .swatches-support { grid-template-columns: repeat(3, 1fr); }
+  .product-lines { grid-template-columns: repeat(2, 1fr); }
+  .logo-concept-grid { grid-template-columns: repeat(2, 1fr); }
+  .marketing-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .wordmark-name { font-size: 58px; }
+  h2 { font-size: 38px; }
+}
+
+/* ── MOBILE (≤767px) ── */
+@media (max-width: 767px) {
+  .container { padding: 0 22px; }
+  .section { padding: 64px 0; }
+
+  /* Nav — anchor links aren't essential on a document meant to be
+     scrolled top-to-bottom; drop them rather than wrap/overflow. */
+  nav { padding: 14px 22px; }
+  .nav-links { display: none; }
+
+  h2 { font-size: 28px; }
+  .lead { font-size: 15px; margin-bottom: 36px; }
+  .eyebrow { font-size: 9px; letter-spacing: 3px; }
+
+  /* Cover / hero */
+  .cover { grid-template-columns: 1fr; min-height: 0; padding-top: 52px; }
+  .cover-left { padding: 48px 24px 36px; }
+  .wordmark-name { font-size: 38px; letter-spacing: 5px; }
+  .cover-tagline p { font-size: 18px; max-width: 100%; }
+  .cover-tagline { margin-top: 40px; }
+  .cover-meta { flex-wrap: wrap; gap: 20px 32px; margin-top: 36px; }
+  .cover-right { padding: 36px 24px; }
+  .cover-swatches { flex-wrap: wrap; }
+  .cover-swatch { width: 36px; height: 36px; }
+
+  /* Foundation */
+  .pillars { grid-template-columns: 1fr; }
+  .positioning-block { padding: 32px 26px; margin-top: 28px !important; }
+  .positioning-block p { font-size: 18px; }
+
+  /* Palette */
+  .swatches-primary, .swatches-support { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .swatch-color { height: 90px; }
+  .product-lines { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .product-line-card { padding: 22px 18px; }
+
+  /* Typography */
+  .type-grid { grid-template-columns: 1fr; gap: 20px; }
+  .type-block { padding: 30px 26px; }
+  .type-display, .type-display-italic { font-size: 40px; }
+  .type-sans-display { font-size: 24px; }
+  .font-pairings { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Logo */
+  .logo-grid { grid-template-columns: 1fr; }
+  .logo-direction { grid-template-columns: 1fr; }
+  .logo-concept-grid { grid-template-columns: 1fr; }
+  .lc-stage { height: 150px; }
+
+  /* Product labels */
+  .label-intro { grid-template-columns: 1fr; gap: 24px; }
+  .label-pair-row { grid-template-columns: 1fr; gap: 28px; }
+  .label-mockups { grid-template-columns: 1fr; }
+  .label, .label-circle { margin: 0 auto; }
+
+  /* Business cards — the fixed 420×240px size is deliberate on
+     desktop (it's a true-to-print-size spec reference); on a phone
+     it just needs to fit the viewport, so switch to fluid width
+     while keeping the real 3.5:2 card aspect ratio. */
+  .card-layout { grid-template-columns: 1fr; gap: 32px; }
+  .biz-card { width: 100%; max-width: 420px; aspect-ratio: 7 / 4; height: auto; }
+  .card-variants { grid-template-columns: 1fr; }
+
+  /* Marketing / voice / roadmap */
+  .marketing-grid { grid-template-columns: 1fr; }
+  .voice-grid { grid-template-columns: 1fr; }
+  .roadmap-grid { grid-template-columns: 1fr; }
+
+  /* Brand switcher — cap width so it can't overflow a narrow viewport */
+  #brand-switcher { right: 14px; bottom: 14px; }
+  #sw-panel { width: min(292px, calc(100vw - 28px)); }
+}
+
+/* ── SMALL PHONES (≤380px) ── */
+@media (max-width: 380px) {
+  .wordmark-name { font-size: 30px; letter-spacing: 3px; }
+  h2 { font-size: 24px; }
+  .swatches-primary, .swatches-support { grid-template-columns: 1fr 1fr; }
+  .product-lines { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
