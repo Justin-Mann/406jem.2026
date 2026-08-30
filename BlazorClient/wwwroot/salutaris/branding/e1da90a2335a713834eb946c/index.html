@@ -636,6 +636,15 @@ tr:last-child td { border-bottom: none; }
   display: flex; flex-direction: column; justify-content: space-between;
   z-index: 1;
 }
+/* Mark accent, upper-right corner — sized to 1/5 the card's height (itself,
+   not a wrapper), so it scales correctly whether the card is the fixed
+   420×240px desktop spec size or the fluid mobile version. */
+.card-logo-mark {
+  position: absolute; top: 20px; right: 24px;
+  height: 20%; width: 20%;
+  z-index: 1;
+}
+.card-logo-mark svg { display: block; width: 100%; height: 100%; }
 .card-logo-line { display: flex; flex-direction: column; gap: 4px; }
 .card-name-lg {
   font-family: var(--ff-serif); font-size: 24px; font-weight: 400;
@@ -2358,6 +2367,17 @@ footer {
       <div class="cards-stack">
         <div class="card-set-label">Front</div>
         <div class="biz-card biz-card-front">
+          <div class="card-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 240 240" fill="none">
+              <polygon points="120,18 33,170 207,170" stroke="#F0E8D6" stroke-width="9" stroke-linejoin="round" fill="none"/>
+              <line x1="94"  y1="64"  x2="40"  y2="20"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="70"  y1="106" x2="12"  y2="90"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="146" y1="64"  x2="200" y2="20"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="170" y1="106" x2="228" y2="90"  stroke="#C8A97A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="88"  y1="170" x2="88"  y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="170" x2="152" y2="222" stroke="#F0E8D6" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="card-front-inner">
             <div class="card-logo-line">
               <div class="card-name-lg">Salutaris</div>
