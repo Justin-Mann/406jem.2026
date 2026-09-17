@@ -26,6 +26,7 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.CLAUDE_NOTIFY_PAT }}
           claude_args: "--permission-mode bypassPermissions"
+          show_full_output: true
           prompt: |
             You are Stage 4 of a multi-agent CI/CD pipeline for the 406jem.2026 repository.
             You are an independent code reviewer — you did NOT write this code.
