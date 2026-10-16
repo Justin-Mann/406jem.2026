@@ -1,0 +1,44 @@
+# Copy this file to config.yaml and edit for your actual wiring.
+poll_interval_seconds: 5
+
+relays:
+  - id: valve_1
+    name: "Front Yard Valve"
+    pin: 17
+    active_high: true
+    default_state: false
+
+  - id: valve_2
+    name: "Garden Bed Valve"
+    pin: 27
+    active_high: true
+    default_state: false
+
+sensors:
+  - id: soil_moisture_1
+    name: "Front Yard Moisture"
+    type: ads1115
+    channel: 0
+    i2c_address: 0x48
+
+  - id: tank_low_switch
+    name: "Tank Low Float Switch"
+    type: digital
+    pin: 5
+    pull_up: true
+
+  - id: flow_meter_1
+    name: "Main Flow Meter"
+    type: pulse_counter
+    pin: 6
+    pulses_per_liter: 450
+
+rules:
+  - relay_id: valve_1
+    sensor_id: soil_moisture_1
+    operator: "<"
+    threshold: 1.2
+    hysteresis: 0.1
+    min_on_seconds: 30
+    min_off_seconds: 30
+    enabled: true

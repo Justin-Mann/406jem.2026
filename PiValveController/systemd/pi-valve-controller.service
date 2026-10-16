@@ -1,0 +1,15 @@
+[Unit]
+Description=Pi Valve Controller
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/PiValveController
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/pi/PiValveController/venv/bin/python main.py --config /home/pi/PiValveController/config.yaml
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pi Valve Controller</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f4f5f7; margin: 0; padding: 2rem; color: #1e2d2a; }
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.05rem; color: #444; margin-top: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+  .card { background: white; border-radius: 8px; padding: 1rem 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  .card h3 { margin: 0 0 0.5rem 0; font-size: 1rem; }
+  .state-on { color: #1a7f37; font-weight: 600; }
+  .state-off { color: #888; font-weight: 600; }
+  .mode { font-size: 0.8rem; color: #666; margin-bottom: 0.75rem; }
+  button { margin-right: 0.4rem; margin-bottom: 0.3rem; padding: 0.35rem 0.7rem; border: 1px solid #ccc; border-radius: 5px; background: #f0f0f0; cursor: pointer; }
+  button.active { background: #1e2d5a; color: white; border-color: #1e2d5a; }
+  .value { font-size: 1.3rem; font-weight: 600; }
+  .empty { color: #888; font-style: italic; }
+</style>
+</head>
+<body>
+<h1>Pi Valve Controller</h1>
+
+<h2>Relays</h2>
+<div id="relays" class="grid"></div>
+
+<h2>Sensors</h2>
+<div id="sensors" class="grid"></div>
+
+<script>
+async function fetchState() {
+  const res = await fetch('/api/state');
+  return res.json();
+}
+
+async function sendCommand(relayId, body) {
+  await fetch(`/api/relays/${relayId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  await render();
+}
+
+function relayCard(relay) {
+  const stateClass = relay.is_on ? 'state-on' : 'state-off';
+  const stateText = relay.is_on ? 'ON' : 'OFF';
+  return `
+    <div class="card">
+      <h3>${relay.name}</h3>
+      <div class="mode">mode: ${relay.mode} &middot; ${relay.seconds_in_state}s in state</div>
+      <div class="${stateClass}">${stateText}</div>
+      <div style="margin-top:0.75rem;">
+        <button class="${relay.is_on && relay.mode==='manual' ? 'active' : ''}" onclick="sendCommand('${relay.id}', {state:true})">On</button>
+        <button class="${!relay.is_on && relay.mode==='manual' ? 'active' : ''}" onclick="sendCommand('${relay.id}', {state:false})">Off</button>
+        <button class="${relay.mode==='auto' ? 'active' : ''}" onclick="sendCommand('${relay.id}', {mode:'auto'})">Auto</button>
+      </div>
+    </div>`;
+}
+
+function sensorCard(sensor) {
+  const value = sensor.value === null || sensor.value === undefined ? '--' : sensor.value.toFixed(2);
+  return `
+    <div class="card">
+      <h3>${sensor.name}</h3>
+      <div class="value">${value}</div>
+    </div>`;
+}
+
+async function render() {
+  const state = await fetchState();
+  const relaysEl = document.getElementById('relays');
+  const sensorsEl = document.getElementById('sensors');
+
+  relaysEl.innerHTML = state.relays.length
+    ? state.relays.map(relayCard).join('')
+    : '<div class="empty">No relays configured.</div>';
+
+  sensorsEl.innerHTML = state.sensors.length
+    ? state.sensors.map(sensorCard).join('')
+    : '<div class="empty">No sensors configured.</div>';
+}
+
+render();
+setInterval(render, 2000);
+</script>
+</body>
+</html>
